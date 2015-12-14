@@ -102,6 +102,13 @@ body
 
       p Here is a non-exhaustive list of projects I have worked on. There is a bit of everything here. Some took months, other took hours.
 
+      h3(id="projects-toc") Table of contents
+        +anchor("projects-toc")
+      ol
+        each project_data in projects
+          li
+            a(href='#' + project_data.id)= project_data.title + '.'
+
     each project_data in projects
       +project(project_data)
 
