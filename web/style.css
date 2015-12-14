@@ -1,0 +1,260 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic);
+@import url(octicons/octicons.css);
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+
+html {
+    color: black;
+    background: #FFFCFC;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, html {
+    font-family: "Lato", sans-serif;
+}
+
+h1, h2, h3, h4, .year, .type, a:hover {
+    color: #FF0082;
+}
+
+body {
+}
+
+h1, h2, .narrow-box {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+a {
+    color: #F754A7;
+    font-weight: bold;
+    text-decoration: initial;
+    font-style: italic;
+}
+
+a.anchor {
+    display: inline-block;
+    line-height: 1;
+    padding-left: 4px;
+}
+
+@media screen and (min-device-width: 481px) {
+    h1 a.anchor span,
+    h2 a.anchor span,
+    h3 a.anchor span {
+        visibility: hidden;
+    }
+}
+
+h1:hover a.anchor span,
+h2:hover a.anchor span,
+h3:hover a.anchor span {
+    visibility: visible;
+}
+
+.link-line .octicon {
+    margin-right: 5px;
+}
+
+.link-line a {
+    font-weight: normal;
+    font-style: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: calc(100% - 16px);
+    display: inline-block;
+}
+
+.links {
+    padding-left: 7px;
+    margin-top: 1em;
+}
+
+.year, .type {
+    font-style: italic;
+    vertical-align: middle;
+}
+
+ul.technologies, ul.languages {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0 0 0 4px;
+    vertical-align: middle;
+}
+
+.languages > li {
+    display: inline-block;
+    margin: 1px;
+    border-radius: 2px;
+    padding: 2px;
+    color: white;
+    font-size: 15px;
+    background: #eb8bbc;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+}
+
+
+.technologies > li {
+    display: inline-block;
+    border: 1px solid #EB8BBC;
+    margin: 1px;
+    border-radius: 2px;
+    padding: 2px;
+    color: #f3298f;
+    font-size: 15px;
+}
+
+abbr {
+    font-style: italic;
+    border-bottom: 1px dashed #f3298f;
+    color: #f3298f;
+}
+
+.type {
+    margin-left: 4px;
+}
+
+code {
+    font-family: Inconsolata;
+}
+
+footer {
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid #f754a7;
+    color: #f754a7;
+    padding-bottom: 16px;
+    margin-top: 32px;
+}
+
+a.elevator-button {
+    margin-top: 8px;
+    display: block;
+}
+
+.project-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+.project-images > a {
+    margin: 4px 4px;
+    padding: 0;
+    border-radius: 4px;
+}
+
+img {
+    margin: 0;
+    display: block;
+}
+
+.thumb {
+    background-image: url(thumbs.jpg);
+    background-repeat: no-repeat;
+}
+
+#image-viewer {
+    display: none;
+}
+div#image-viewer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+div.image-viewer-center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#image-viewer-img-container img {
+    position: absolute;
+}
+
+a#image-viewer-prev, a#image-viewer-next {
+    position: absolute;
+    margin-bottom: auto;
+    display: block;
+    top: 50%;
+    background: rgba(230, 220, 225, 0.45);
+    margin-top: -48px;
+    outline: none;
+}
+
+a#image-viewer-prev {
+    left: -16px;
+    border-radius: 0 48px 48px 0;
+}
+
+a#image-viewer-next {
+    right: -16px;
+    border-radius: 48px 0 0 48px;
+}
+span.alt {
+    display: none;
+}
+
+#image-viewer-prev .octicon, #image-viewer-next .octicon {
+    font-size: 96px;
+    width: 96px;
+    text-align: center;
+}
+
+div#image-viewer-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 16px;
+    text-align: center;
+    min-height: 130px;
+    box-sizing: border-box;
+}
+
+div#image-viewer-project-name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+div#image-viewer-description {
+    margin-bottom: 8px;
+    max-width: 510px;
+    margin: 0 auto;
+}
+
+.disabled {
+    color: #808080 !important;
+}
+
+div#image-viewer-img-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+div#image-viewer-controls {
+    position: absolute;
+    top: 0;
+    bottom: 130px;
+    left: 0;
+    right: 0;
+}

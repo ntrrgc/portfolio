@@ -1,0 +1,422 @@
+- id: snorky
+  title: "Snorky: a real-time framework for web applications"
+  type: software
+  year: 2014
+  home: http://snorkyproject.org/
+  source: https://github.com/ntrrgc/snorky
+  docs: http://docs.snorkyproject.org/en/latest/
+  technologies: [python, tornado, AngularJS, javascript]
+  languages: [en]
+  images:
+    1: Snorky homepage.
+    2: Snorky documentation.
+    3: The website includes a demo application to showcase Snorky.
+    4: Interface of the demonstrational helpdesk application.
+    5: One of my current projects based on Snorky, a collaborative translation editor.
+  description:
+     This framework provides base architecture that eases the development of WebSocket servers for real-time applications. On top of that you use or extend *services* that provide functionality as <abbr title="Remote Procedure Call">RPC</abbr>, PubSub or user chats.
+
+
+     The greatest feature of Snorky is its [DataSync service](http://docs.snorkyproject.org/en/latest/datasync/) that makes easy to synchronize data between a database server of any kind and a web client in a safe and efficient way.
+
+
+     Snorky can be used along with any other frameworks or languages, but shines specially when used in combination with the [Django ORM](https://docs.djangoproject.com/en/1.9/topics/db/models/) for data access, [Django REST Framework](http://www.django-rest-framework.org/) for data queries and [AngularJS](https://angularjs.org/) for frontend development.
+     
+- id: snorky-thesis
+  title: Integration of real time features in web applications
+  type: document
+  year: 2014
+  docs: http://ntrrgc.rufian.eu/SistemasWebTiempoReal.pdf
+  languages: [es]
+  images:
+    1: A page of the thesis.
+    2: Class diagrams showing the design of Snorky.
+    3: Efficient unit testing was considered a priority for a project of this kind.
+
+  description:
+
+    This is my Bachelor's thesis, in which I describe how the development of [Snorky](http://snorkyproject.org/) was done.
+    
+- id: tormes
+  title: "Tormes: The streaming backup system"
+  type: software
+  year: 2015
+  home: 
+  docs: http://ntrrgc.rufian.eu/SistemaCopiasSeguridad.pdf
+  technologies: [node.js, CoffeeScript]
+  languages: [es]
+  images:
+    1: >
+      Another configuration file. This one describes in what storage each resource backups will be stored.
+
+
+      Tormes configuration files are actually executable CoffeeScript, which allows the user to express complex mappings.
+
+    2: A configuration file from Tormes. This one describes what *resources* can be backed up.
+
+  description: >
+    I was not happy with the existing backup tools available at the time &mdash; [apparently I'm not the only one](https://3ofcoins.net/2013/11/14/backups-suck-a-rant/), so I tried to roll my own.
+
+
+    What makes Tormes different:
+
+
+    * Tormes is designed to store backups on **cloud storage or remote file systems** (it's not designed for magnetic tapes nor attempts to use them as a metaphor of anything).
+
+
+    * An **optional master server** can be set up to aggregate backup metadata from different servers, but the backup data is sent directly to the cloud.
+
+
+    * Every backup file is **signed and encrypted**, by default. Each backup gets its own key, derived from a master key, only known to the master server. Your cloud does not store your keys.
+
+
+    * **No intermediate copies are performed, ever**. You won't need several times 50 GiB in order to send 50 GiB to the cloud. Indeed, you will only need space in your storage service. Each step of the process (archiving, encryption and storage) is performed concurrently. That is what makes it the *streaming* backup system!
+
+
+    * It's managed by **simple console commands**, e.g. `tormes-catalog` shows a list of the backups stored in the system, accepting filters by machine and resource.
+
+
+    * Archiver programs can be written to make backups not only of directories or file systems but **any other data source**, like SQL dumps or application-specific database formats.
+
+
+    * **Writing storage modules** is a matter of coding two Node.js streams, one for reading and other for writing. The S3 storage module is just 100 lines.
+
+
+    * **The system is flexible**. Writing new storage modules or archive programs does not require touching the core codebase at all. A node can restore a backup made in other node or use a different unarchiver without issue.
+
+
+    * It has been built with **security on mind**. A ticket system is used such that nodes can only restore and decrypt backups they have been explicitly authorized.
+    
+- id: watchd
+  title: "watchd: Restart programs on events"
+  type: software
+  year: 2015
+  home: 
+  source: https://github.com/ntrrgc/watchd
+  technologies: [python, vim]
+  languages: [en]
+  images:
+    1: The `watchd-monitor` command working.
+  description: >
+
+    [watchd](https://github.com/ntrrgc/watchd) is a simple tool to waste less time switching windows when developing software.
+
+
+    It consists of two programs. `watchd-monitor` launches whatever command is passed as arguments and whenever it receives a reload signal it will terminate the current process and relaunch it. `watchd-notify` sends a reload signal to any monitors available.
+
+
+    It easy to bind `watchd-notify` to any text editor with a save event so that after changes to a file are written to disk you get to see the new output of the program. This method is more robust than file system monitors that are often prone to race conditions depending on how the editor works internally.
+
+- id: lasana
+  title: Lasaña, a temporary file hosting service
+  type: software
+  year: 2013
+  home: https://lasana.rufian.eu/
+  source: https://github.com/ntrrgc/lasana/
+  technologies: [python, django, nginx, lighttpd]
+  languages: [en, es]
+  images:
+    1: Image previews, upload progress reporting, click and dragging and pasting from clipboard is supported.
+  description:
+    Originally made years ago for my own use in a few hours, it has more than paid over the effort, being a tool I use almost every day.
+
+
+    This little service allows you to host files and get a temporary URL that links to them. No wrappers, no dangerous ads, no need to register, no waiting periods, no file type limitations... It can even stream video and audio!
+
+- id: lasana-uploader
+  title: A desktop uploader for Lasaña
+  type: software
+  year: 2013
+  source: https://github.com/ntrrgc/lasana_uploader
+  technologies: [python, Qt]
+  languages: [en]
+  images:
+    1: As in the web version, image previews and progress reporting is provided.
+  description:
+    This is desktop application allows users to share files with Lasaña without launching the browser. It can also be scripted easily to use with screenshots, which are one of the most common use cases for Lasaña.
+    
+- id: lasana-android
+  title: Lasaña uploader for Android
+  type: software
+  year: 2015
+  home: 
+  source: 
+  technologies: [Android, Java]
+  languages: [en, es]
+  images:
+    1: Recursion!
+  description:
+    I found often wanted to share photos from my phone with Lasaña, so I made an app for that. You can either pick a photo from the application or you can use the *Share* functionality built on Android.
+
+
+    It's more awesome if used in conjunction with a clipboard sharing application, so you can actually take a photo in your phone, tap *Share* and paste the link in your computer with *Ctrl+V*.
+
+- id: bad-apple
+  title: Video streaming with embedded systems
+  type: software
+  year: 2015
+  video: https://www.dropbox.com/sc/m6app8ckv6qi13r/AADvuoOOjfLT6Wo6xYwJ11xka
+  technologies: [C]
+  languages: [en]
+  images:
+    1: Testing the screen with still images. Reimu is so cute!
+    2: We got streaming!
+    3: Definitely not the best amplifier, but will have to do the job.
+  description:
+    As a project for a subject on embedded systems I built a three node system with two Freescale Kinetis boards and a Raspberry Pi that streamed audio and video and played it in a small 128x64 monochrome OLED screen and a loudspeaker.
+
+
+    The audio and video was extracted from a standard h.264 video file with [ffmpeg](https://www.ffmpeg.org/) and transcoded to custom audio, video and muxing formats suitable for real time streaming over the constrained serial port channels available. A watermark protocol is implemented by every pair of nodes communicating to prevent both underruns and overruns.
+
+
+    It was useless but fun.
+
+- id: routerbox
+  title: Deployment of a router, access point and cache for events
+  type: software
+  year: 2015
+  home: 
+  source: https://github.com/ACM-USAL/routerbox
+  technologies: [linux, ansible]
+  languages: [en]
+  description:
+    In multiple occasions at [ACM USAL](http://usal.acm.org/), we needed a way to provide a fast internet connection to a number of guests in a room with only one Ethernet socket and very limited WiFi access. The connection would need to be used to download big software packages.
+
+
+    Using only a laptop, an external Ethernet USB card and a small Ethernet switch I was able to share an Internet connection by means of <abbr title="Network Address Translation">NAT</abbr> through both a WiFi access point exposed through the laptop wireless card and the Ethernet switch.
+
+
+    In order to minimize the impact of the big file downloads on the host network, a HTTP cache proxy is introduced with [Squid](http://www.squid-cache.org/), so they are served from the laptop disk or RAM instead. The proxy contains a custom rewriter that is able to catch request of Ubuntu packages from mirrors, avoiding downloading the same data from different mirrors.
+
+
+    A pair of Ansible playbooks are provided to replicate (and later tear down)  with minimal user interaction.
+    
+- id: dhondt
+  title: Visualization of the effect of the D'Hondt method on party seat allocation
+  type: software
+  year: 2015
+  home: http://ntrrgc.github.io/dhondt-vis/
+  source: https://github.com/ntrrgc/dhondt-vis
+  technologies: [d3.js, javascript]
+  languages: [es]
+  images:
+    1: The application explains the method and the simulation at the same time.
+  description:
+    Made as a class assignment, this interactive application explains the basics of the proportional representation systems such as the D'Hondt method and allows the user to view and experiment its effect as both the votes cast and the number of available seats vary.
+
+
+    The application is usable from desktop and tablets.
+    
+- id: gamematicas
+  title: A web site with tutorials on math related to game development
+  type: software
+  year: 2015
+  home: http://gamematicas.com/
+  source: 
+  technologies: [node.js, hexo]
+  languages: [es]
+  images:
+    1: A screenshot of Gamematicas from a desktop computer.
+    2: Gamematicas from Android.
+  description:
+    This site was made for an assignment on *Search Engine Optimization*.
+
+
+    It features a small site explaining math useful for game development. It includes code, graphics and interactive demonstrations.
+
+
+    The entire site was made static and highly compressed to offer minimal load time. Goal tracking was set in Google Analytics. The design was carefully crafted from scratch for maximal legibility on a number of platforms.
+    
+- id: mathparser
+  title: A mathematical expression parser in C++11
+  type: software
+  year: 2013
+  source: https://github.com/ntrrgc/mathparser
+  technologies: [C++, bison]
+  languages: [en]
+  description:
+    This parser is able to evaluate mathematical expressions from user provided strings, like `1 + cos(2 * pi * x) / 2`. It is able to signal errors on malformed expressions and is safe and robust enough to be used in end user facing applications.
+
+
+    It has been used as a calculator and as part of a function plotting software. A C API is provided to ease integration with other languages.
+
+
+    The code makes extensive use of classes and smart pointers. Indeed, it passes [valgrind memcheck](http://valgrind.org/) with zero leaks even though there is not a single `delete` in the codebase.
+    
+- id: contextualized
+  title: Contextualized tracebacks for Python
+  type: software
+  year: 2015
+  home: https://pypi.python.org/pypi/contextualized
+  source: https://github.com/ntrrgc/contextualized
+  technologies: [python]
+  languages: [en]
+  description:
+    If you have ever written a parser you may have felt many times puzzled by a crash where you get a traceback but have no idea what code actually produced it.
+
+
+    I found myself in that situation often enough to warrant inventing something to track errors better, so here it is. This simple module gives the programmer a *context* object to set information on what is being processed, like line numbers or file names and shows them in the event of a crash.
+
+- id: solr-localpedia
+  title: An introduction to Solr
+  type: software
+  year: 2015
+  source: https://github.com/ntrrgc/localpedia
+  docs: http://ntrrgc.rufian.eu/IntroduccionSolr.pdf
+  technologies: [solr, python]
+  languages: [es]
+  images:
+    1: A screenshot of Localpedia working.
+  description: >
+    I gave a talk about deploying a search engine built on Solr, an open source search platform based on Lucene.
+
+
+    In it I described how it is set up, how documents can structured for Solr, the mechanisms it provides to convert raw textual information in indexable word stems, how indexes are created, how documents are fed to the system and how search is performed.
+
+
+    As a demonstration application I create *Localpedia*: I download a dump of all the abstracts of Spanish wikipedia &mdash; they are publicly available on [dumps.wikimedia.org](https://dumps.wikimedia.org/), parse them with Python and feed them to Solr. Then I build simple Flask web application that serves as frontend, allowing the user to look for articles.
+    
+- id: rc4
+  title: An overview of the RC4 stream cipher
+  type: document
+  year: 2013
+  docs: http://rufian.eu/Cifrado_RC4/
+  languages: [es]
+  description:
+    In this paper explain the basics of stream ciphers and RC4, one of the most popular stream ciphers that are in mainstream. The algorithm, implementation caveats and existing attacks are described.
+    
+- id: qt-deadkeys
+  title: Qt dead keys bug
+  type: software
+  year: 2014
+  source: https://codereview.qt-project.org/#/c/68938/
+  technologies: [C++, Qt, Windows API]
+  languages: [en]
+  description:
+    Until version 4.8.6, Qt had a bug where dead keys (e.g. those used to write diacritics like `á` in Spanish keyboards) were ignored on Microsoft Windows if the user typed fast.
+
+
+    I fixed it.
+
+- id: conejitos
+  title: A game in which you can kill and convert bunnies
+  type: software
+  year: 2015
+  download:
+    Linux: http://ntrrgc.rufian.eu/ConejitosLinux.zip
+    Windows: http://ntrrgc.rufian.eu/ConejitosWindows.zip
+  technologies: [Unity3D, C#]
+  languages: [es]
+  images:
+    1: A screenshot from the game.
+  description:
+    You can advance your character with `W` key or step back with `S`. Use your mouse to set your direction. Enemies spawn from outside the screen. Left click shoots a ray, right click tries to convert an enemy or heals a converted bunny (as in *Age of Empires*).
+
+
+    Made for an assignment. That was a fun night.
+
+
+- id: angular-workshop
+  title: An AngularJS workshop
+  type: workshop
+  year: 2014
+  video: https://www.youtube.com/watch?v=uqKkA8ibm3A
+  source: https://github.com/ACM-USAL/el-desvan-de-pepe
+  technologies: [AngularJS, javascript]
+  images:
+    1: A screenshot of the application created.
+  languages: [es]
+
+  description:
+    As part of [ACM USAL](http://usal.acm.org/) I organized a workshop where I explained how to build an AngularJS application from the ground up.
+
+
+    Javascript, HTML and CSS basics were covered first; then the AngularJS framework was introduced. Features like the module system, dependency injection, the URL router, controllers, filters and the HTTP API were explained.
+
+
+    During the workshop, the catalog of a fictitious shop is created as a single page web application.
+
+- id: intergraph-explorer
+  title: A tool for creating graphs on top of maps
+  type: software
+  year: 2014
+  technologies: [C++, Qt]
+  languages: [es, en]
+  images:
+    1: The interface of the software showing the path between two nodes.
+  description:
+    This application offers an efficient user interface for defining graphs on top of map images.
+
+
+    First, the user loads an image file. Then, in the node drawing mode, the user clicks every where they want to create a node; then edges are drawn in the edge drawing mode. At any point nodes may be moved and edges removed. This process is even quickier if a graphics tablet is used instead of a mouse.
+
+
+     The program generates a easy to parse XML file describing the graph with nodes having the coordinates relative to the image. That file can be used in external applications or loaded in the map editor to edit it later.
+
+
+     The software also comes with built-in path finding functionality that allows the user to query the shortest path between two arbitrary nodes, using the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).
+
+
+     Alternatively, since this was made as part of an assignment, it can also use a [backtrack algorithm](https://en.wikipedia.org/wiki/Backtracking) written in [Prolog](https://en.wikipedia.org/wiki/Prolog). A Prolog interpreter with user facing console is also included in the software.
+     
+- id: rereremote
+  title: Use your phone as a slidoshow remote controller via Wi-Fi
+  type: software
+  year: 2014
+  home:
+  source: https://github.com/ntrrgc/rereremote
+  technologies: [python, tornado, Qt, AngularJS]
+  languages: [en]
+  images:
+    1: Server graphical interface.
+    2: Phone application.
+  description:
+    This little thing was the first mobile application I did, since before that I did not own a smartphone.
+
+
+    This tool lets you use your phone as a remote controller for slideshows. You start a server in your computer, either through the command line or from the graphical user interface, then you type the address in your phone's browser and you are done. Optionally you can set a password.
+
+
+    The application works at least on Windows and Linux.
+    
+- id: malote
+  title: "Malote: a distributed software deployer"
+  type: software
+  year: 2014
+  home:
+  source:
+  technologies: [python, tornado, AngularJS]
+  languages: [en]
+  images:
+    1: The management interface of Malote.
+  description:
+    This is a tool to streamline the deployment of distributed applications during development. First the master server software (*malote*) is run in the computer of the programmer. Then a client software (*minion*) is packed, configured with the IP of the master server and other security parameters. The minion software is manually launched on every computer the software is wanted to run on.
+
+
+    From a web interface, the programmer can set the path of the software they are developing and specify different *templates* that may execute pieces of this software. Each node running the minion software can be assigned one or more command templates.
+
+
+    Pressing the *Deploy* button the software directory is compressed and sent to every minion. After that, each node executes the associated commands. If there were processes from a previous deployment, they are automatically killed before any further action.
+
+
+    The communication between *Malote* and *minions* is authenticated and encrypted with a local *TLS* certification authority and the use of client certificates, so that nobody without the keys that are bundled with the minion configuration package can alter the software or fraudulently join the network.
+
+
+    The software works in both UNIX and Windows systems.
+
+- id: portfolio
+  title: This portfolio
+  type: software
+  year: 2015
+  home: http://ntrrgc.rufian.eu/portfolio/
+  source: 
+  technologies: ['node.js', javascript]
+  languages: [en]
+  description:
+    This page you are seeing was coded from scratch in a weekend.
+
+
+    On development, an [express](http://expressjs.com/en/index.html) server is run that reads a series of [YAML](http://yaml.org/) files containing all the prose and compiles a [Jade](http://jade-lang.com/) template that morphs them into the HTML you are seeing. As a development plus, thanks to [tiny-lr](https://github.com/mklabs/tiny-lr) the browser always updates the data when any of the data files or the template are modified. The theme and and interactive features like the slideshow are created from scratch.
+
+
+    On production, it compiles to a simple static web site that can be uploaded anywhere with zero maintenance... those are the best!

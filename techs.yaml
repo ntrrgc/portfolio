@@ -1,0 +1,24 @@
+python: A programming language that does not get in your way.
+node.js: A platform for developing servers and other unsandboxed creatures in JavaScript.
+django: A web framework that is worth it.
+nginx: An efficient and configurable web server. The go-to server when you use anything other than PHP.
+lighttpd: An efficient and configurable web server, similar to nginx. Unfortunately its development has slowed down to the point as of the end of 2015 it still has no built-in support for websockets. Therefore I have migrated to nginx.
+Qt: A framework mainly used for developing desktop applications (yeah, some people still make those!).
+Android: The most popular operating system for smartphones, globally.
+Java: A statically typed programming language used by lots of projects, including Android.
+tornado: An asynchronous web framework and networking library for Python.
+AngularJS: A slim framework to build client-intensive web applications. It consists of modularization helpers, a model-view mapper, a template language and an optional URL router.
+javascript: The language that runs on the browser... for a lot of time one of the world's most dreaded languages, it's super trendy now!
+linux: An operating system.
+ansible: A configuration management system. It is used to automate tasks (e.g. custom applications deployment) on UNIX-based systems, usually servers.
+d3.js: A library intended for manipulating web elements (usually SVG elements) to produce data visualization that work in the browser.
+vim: A programmable text editor.
+Unity3D: A popular game engine using C# and Mono.
+C#: An object oriented language, much like Java but made by Microsoft for .NET Framework.
+CoffeeScript: Javascript with a Ruby-esque syntax and some additions.
+hexo: A static blog generator for Node.js.
+solr: An open source search engine built on Java an Apache Lucene.
+C: A programming language from the 70's. It hits a balance between been low level enough to grant the programmer control over how the memory is used but high level enough to create platform independent code while keeping the language very simple. Therefore is still heavily used today in areas where performance is critical or hardware is constrained.
+C++: A programming language extending C. It adds useful features like classes and reusable data structures at the expense of making the language much more complex. As it provides very high level abstractions with minimal impact on performance it has been the preferred language for game engines, web browsers, compilers, and many other applications for a very long time.
+bison: A parser generator for context-free grammars.
+Windows API: The collection of programming interfaces Microsoft Windows offers to programmers.
