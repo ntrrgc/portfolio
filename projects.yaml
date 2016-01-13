@@ -133,7 +133,7 @@
   images:
     1: As in the web version, image previews and progress reporting is provided.
   description:
-    This is desktop application allows users to share files with Lasaña without launching the browser. It can also be scripted easily to use with screenshots, which are one of the most common use cases for Lasaña.
+    This desktop application allows users to share files with Lasaña without launching the browser. It can also be scripted easily to use with screenshots, which are one of the most common use cases for Lasaña.
     
 - id: lasana-android
   title: Lasaña uploader for Android
@@ -360,7 +360,7 @@
      Alternatively, since this was made as part of an assignment, it can also use a [backtrack algorithm](https://en.wikipedia.org/wiki/Backtracking) written in [Prolog](https://en.wikipedia.org/wiki/Prolog). A Prolog interpreter with user facing console is also included in the software.
      
 - id: rereremote
-  title: Use your phone as a slidoshow remote controller via Wi-Fi
+  title: Use your phone as a slideshow remote controller via Wi-Fi
   type: software
   year: 2014
   home:
