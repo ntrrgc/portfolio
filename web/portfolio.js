@@ -213,7 +213,11 @@ function ImageViewer() {
         close();
     });
 
-    // TODO: Disable document scroll while the viewer is active
+    // Do not propagate mouse wheel events produced in the image viewer
+    // to the parent containers.
+    $('#image-viewer').on("wheel", function (ev) {
+        ev.preventDefault()
+    });
 
     return {
         updateVisible: updateVisible,
