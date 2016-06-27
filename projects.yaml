@@ -1,3 +1,25 @@
+- id: hepdata-explore
+  title: "HEPData Explore: High Energy Physics visualization tool"
+  type: software
+  year: 2016
+  home: http://hepdata.rufian.eu/
+  source: https://github.com/HEPData/hepdata-explore
+  docs: https://github.com/HEPData/hepdata-explore/blob/master/docs/user-guide.md
+  technologies: [TypeScript, knockout, ElasticSearch, python]
+  languages: [en]
+  images:
+    1: HEPData Explore main interface
+    2: Custom plot interface
+  description:
+
+    This is an information retrieval and visualization tool designed for fast exploration of High Energy Physics data set. It was developed as my master's degree final year project in collaboration with [CERN](http://home.cern).
+
+
+    In the backend, the application features an ElasticSearch index populated with data tables from all scholarly publishing from [HEPData](http://hepdata.net/) dating from 1960 to the present. New data can be added or updated incrementally in a few seconds.
+
+
+    In the frontend, a recursive filter interface allows querying data matching arbitrary expressions. The interface aims to be easy and efficient, featuring drag and drop controls and autocompletion.
+
 - id: snorky
   title: "Snorky: a real-time framework for web applications"
   type: software
@@ -21,6 +43,19 @@
 
 
      Snorky can be used along with any other frameworks or languages, but shines specially when used in combination with the [Django ORM](https://docs.djangoproject.com/en/1.9/topics/db/models/) for data access, [Django REST Framework](http://www.django-rest-framework.org/) for data queries and [AngularJS](https://angularjs.org/) for frontend development.
+
+- id: hepdata-explore-thesis
+  title: Data visualization of CERN scholarly publishing
+  type: document
+  year: 2016
+  docs: http://ntrrgc.rufian.eu/HEPData-Explore.pdf
+  languages: [es]
+  images:
+    1: A wireframe
+    2: bai
+  description:
+
+    This is my master's thesis, in which I detail how [HEPData Explore](http://hepdata.rufian.eu/) (mentioned above) was created.
      
 - id: snorky-thesis
   title: Integration of real time features in web applications
@@ -35,7 +70,7 @@
 
   description:
 
-    This is my Bachelor's thesis, in which I describe how the development of [Snorky](http://snorkyproject.org/) was done.
+    This is my bachelor's thesis, in which I describe how the development of [Snorky](http://snorkyproject.org/) was done.
     
 - id: tormes
   title: "Tormes: The streaming backup system"
@@ -195,7 +230,7 @@
   title: Visualization of the effect of the D'Hondt method on party seat allocation
   type: software
   year: 2015
-  home: http://ntrrgc.github.io/dhondt-vis/
+  home: http://metodo-dhondt.com/
   source: https://github.com/ntrrgc/dhondt-vis
   technologies: [d3.js, javascript]
   languages: [es]
