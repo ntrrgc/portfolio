@@ -69,6 +69,14 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     if devMode
       script(src="/livereload.js")
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q || []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79954727-1', 'auto');
+      ga('send', 'pageview');
 body
     div(class="narrow-box")
       h1=me
@@ -94,6 +102,8 @@ body
         As part of the [Virtual Alliances for Learning Society](http://virtualalliances.eu/) project I worked with [Inkscape](https://inkscape.org/en/) on the implementation of the [SVG 2 strokes module](http://www.w3.org/TR/svg-strokes/).
 
         At the moment I'm working on a data visualization project for [HEPData](https://hepdata.net/) in collaboration with [CERN](http://home.cern/) as my final year project.
+
+        Since February 2016 I've been working at [Grupo MContigo](http://mcontigo.com/) designing and developing business process automation software and some yet-to-be released projects.
 
 
     div(class="narrow-box")
