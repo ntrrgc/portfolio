@@ -170,12 +170,21 @@ function ImageViewer() {
                 // right
                 $('#image-viewer-next').click();
             },
+            34: function () {
+                // page down
+                $('#image-viewer-next').click();
+            },
+            33: function () {
+                // page up
+                $('#image-viewer-prev').click();
+            },
             27: function () {
                 // esc
                 close()
             }
         };
         if (actions[ev.keyCode] !== undefined) {
+            ev.preventDefault()
             actions[ev.keyCode]()
         }
     }
