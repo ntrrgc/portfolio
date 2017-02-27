@@ -6,6 +6,7 @@ lighttpd: An efficient and configurable web server, similar to nginx. Unfortunat
 Qt: A framework mainly used for developing desktop applications (yeah, some people still make those!).
 Android: The most popular operating system for smartphones, globally.
 Java: A statically typed programming language used by lots of projects, including Android.
+Kotlin: A statically typed programming language targeting the Java Virtual Machine, offering null-safety and a number of productivity enhancements.
 tornado: An asynchronous web framework and networking library for Python.
 AngularJS: A slim framework to build client-intensive web applications. It consists of modularization helpers, a model-view mapper, a template language and an optional URL router.
 knockout: A JavaScript library that provides observable objects and a template engine, designed for writing client-intensive web applications. In some aspects it competes with AngularJS.

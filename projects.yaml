@@ -121,6 +121,23 @@
 
 
     * It has been built with **security on mind**. A ticket system is used such that nodes can only restore and decrypt backups they have been explicitly authorized.
+
+- id: ts-generator
+  title: TypeScript definition generator for the JVM
+  type: software
+  year: 2017
+  source: https://github.com/ntrrgc/ts-generator
+  technologies: [Kotlin, Java, TypeScript]
+  languages: [en]
+  description:
+
+    This library generates TypeScript definitions that cover a set of Kotlin and Java classes using Kotlin reflection.
+
+
+    TypeScript definitions are useful when data classes are serialized to JSON and handled in a JavaScript or TypeScript web frontend as they enable context-aware type checking and autocompletion in a number of IDEs and editors.
+    
+
+    Many features of these languages are supported and transpiled just fine, including Kotlin data classes, object inheritance, null-safe types, generic types, arrays and associative objects. A transformer API is provided in order to handle more complex scenarios where property names or types need to be modified during the transformation.
     
 - id: watchd
   title: "watchd: Restart programs on events"
@@ -455,3 +472,4 @@
 
 
     On production, it compiles to a simple static web site that can be uploaded anywhere with zero maintenance... those are the best!
+
