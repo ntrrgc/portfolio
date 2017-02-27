@@ -180,6 +180,23 @@
 
     It easy to bind `watchd-notify` to any text editor with a save event so that after changes to a file are written to disk you get to see the new output of the program. This method is more robust than file system monitors that are often prone to race conditions depending on how the editor works internally.
 
+- id: right-window
+  title: "Desktop utility to switch focus between applications"
+  type: software
+  year: 2016
+  source: https://github.com/ntrrgc/right-window
+  technologies: [C++, X11]
+  languages: [en]
+  description: >
+
+    This is a small utility to move the focus between windows in a desktop environment following a cardinal direction. For instance, `right-window -f right` will focus the window next to the right. Available directions are `left`, `right`, `up` and `down`. 
+
+    
+    The directions correspond to the actual position of the other windows relative to the currently focused window.
+
+
+    I use this small utility in order to quickly navigate between windows in my tiling window manager (bspwm) without using the mouse. The algorithms are generic and they can also work in non-tiling window managers.
+
 - id: lasana
   title: Lasaña, a temporary file hosting service
   type: software

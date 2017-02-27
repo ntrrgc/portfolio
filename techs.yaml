@@ -27,3 +27,4 @@ Windows API: The collection of programming interfaces Microsoft Windows offers t
 ReactiveX: A set of libraries for different languages providing a programming model based on asynchronous, observable data flows.
 ElasticSearch: A multi-purpose search server with a built-in server and REST API, used to incorporate information retrieval capabilities in applications.
 TypeScript: Superset of JavaScript featuring type annotations in order to provide static type safety.
+X11: The most common window system used in Linux-based desktop environments.
