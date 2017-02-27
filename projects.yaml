@@ -90,7 +90,7 @@
     Many features of these languages are supported and transpiled just fine, including Kotlin data classes, object inheritance, null-safe types, generic types, arrays and associative objects. A transformer API is provided in order to handle more complex scenarios where property names or types need to be modified during the transformation.
 
 - id: bad-apple
-  title: Video streaming with embedded systems
+  title: Video and audio streaming with embedded systems
   type: software
   year: 2015
   video: https://www.dropbox.com/sc/m6app8ckv6qi13r/AADvuoOOjfLT6Wo6xYwJ11xka
@@ -107,7 +107,7 @@
     The audio and video was extracted from a standard h.264 video file with [ffmpeg](https://www.ffmpeg.org/) and transcoded to custom audio, video and muxing formats suitable for real time streaming over the constrained serial port channels available. A watermark protocol is implemented by every pair of nodes communicating to prevent both underruns and overruns.
 
 
-    It was useless but fun.
+    It didn't really had a useful purpose but it was fun.
     
 - id: tormes
   title: "Tormes: The streaming backup system"
