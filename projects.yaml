@@ -71,6 +71,43 @@
   description:
 
     This is my bachelor's thesis, in which I describe how the development of [Snorky](http://snorkyproject.org/) was done.
+
+- id: ts-generator
+  title: TypeScript definition generator for the JVM
+  type: software
+  year: 2017
+  source: https://github.com/ntrrgc/ts-generator
+  technologies: [Kotlin, Java, TypeScript]
+  languages: [en]
+  description:
+
+    This library generates TypeScript definitions that cover a set of Kotlin and Java classes using Kotlin reflection.
+
+
+    TypeScript definitions are useful when data classes are serialized to JSON and handled in a JavaScript or TypeScript web frontend as they enable context-aware type checking and autocompletion in a number of IDEs and editors.
+    
+
+    Many features of these languages are supported and transpiled just fine, including Kotlin data classes, object inheritance, null-safe types, generic types, arrays and associative objects. A transformer API is provided in order to handle more complex scenarios where property names or types need to be modified during the transformation.
+
+- id: bad-apple
+  title: Video streaming with embedded systems
+  type: software
+  year: 2015
+  video: https://www.dropbox.com/sc/m6app8ckv6qi13r/AADvuoOOjfLT6Wo6xYwJ11xka
+  technologies: [C]
+  languages: [en]
+  images:
+    1: Testing the screen with still images. Reimu is so cute!
+    2: We got streaming!
+    3: Definitely not the best amplifier, but will have to do the job.
+  description:
+    As a project for a subject on embedded systems I built a three node system with two Freescale Kinetis boards and a Raspberry Pi that streamed audio and video and played it in a small 128x64 monochrome OLED screen and a loudspeaker.
+
+
+    The audio and video was extracted from a standard h.264 video file with [ffmpeg](https://www.ffmpeg.org/) and transcoded to custom audio, video and muxing formats suitable for real time streaming over the constrained serial port channels available. A watermark protocol is implemented by every pair of nodes communicating to prevent both underruns and overruns.
+
+
+    It was useless but fun.
     
 - id: tormes
   title: "Tormes: The streaming backup system"
@@ -122,22 +159,6 @@
 
     * It has been built with **security on mind**. A ticket system is used such that nodes can only restore and decrypt backups they have been explicitly authorized.
 
-- id: ts-generator
-  title: TypeScript definition generator for the JVM
-  type: software
-  year: 2017
-  source: https://github.com/ntrrgc/ts-generator
-  technologies: [Kotlin, Java, TypeScript]
-  languages: [en]
-  description:
-
-    This library generates TypeScript definitions that cover a set of Kotlin and Java classes using Kotlin reflection.
-
-
-    TypeScript definitions are useful when data classes are serialized to JSON and handled in a JavaScript or TypeScript web frontend as they enable context-aware type checking and autocompletion in a number of IDEs and editors.
-    
-
-    Many features of these languages are supported and transpiled just fine, including Kotlin data classes, object inheritance, null-safe types, generic types, arrays and associative objects. A transformer API is provided in order to handle more complex scenarios where property names or types need to be modified during the transformation.
     
 - id: watchd
   title: "watchd: Restart programs on events"
@@ -203,25 +224,6 @@
 
     It's more awesome if used in conjunction with a clipboard sharing application, so you can actually take a photo in your phone, tap *Share* and paste the link in your computer with *Ctrl+V*.
 
-- id: bad-apple
-  title: Video streaming with embedded systems
-  type: software
-  year: 2015
-  video: https://www.dropbox.com/sc/m6app8ckv6qi13r/AADvuoOOjfLT6Wo6xYwJ11xka
-  technologies: [C]
-  languages: [en]
-  images:
-    1: Testing the screen with still images. Reimu is so cute!
-    2: We got streaming!
-    3: Definitely not the best amplifier, but will have to do the job.
-  description:
-    As a project for a subject on embedded systems I built a three node system with two Freescale Kinetis boards and a Raspberry Pi that streamed audio and video and played it in a small 128x64 monochrome OLED screen and a loudspeaker.
-
-
-    The audio and video was extracted from a standard h.264 video file with [ffmpeg](https://www.ffmpeg.org/) and transcoded to custom audio, video and muxing formats suitable for real time streaming over the constrained serial port channels available. A watermark protocol is implemented by every pair of nodes communicating to prevent both underruns and overruns.
-
-
-    It was useless but fun.
 
 - id: routerbox
   title: Deployment of a router, access point and cache for events
