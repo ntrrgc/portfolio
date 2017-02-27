@@ -197,6 +197,26 @@
 
     I use this small utility in order to quickly navigate between windows in my tiling window manager (bspwm) without using the mouse. The algorithms are generic and they can also work in non-tiling window managers.
 
+- id: cocos-patches
+  title: Cocos2D-HTML5 patches
+  type: software
+  year: 2017
+  source: https://github.com/cocos2d/cocos2d-html5/pulls?q=is%3Apr%20author%3Antrrgc
+  technologies: [javascript]
+  languages: [en]
+  description: >
+
+    I've developed and contributed upstream a number of patches for the HTML5 port of Cocos2D-x, adding features and bugfixes. For instance:
+      
+      
+      * [Fixed a long time bug with text rendering in the WebGL backend.](https://github.com/cocos2d/cocos2d-html5/pull/3263)
+
+      * [Fixed a very subtle bug that blurred large areas of the screen.](https://github.com/cocos2d/cocos2d-html5/pull/3388)
+
+      * [Improved text wrapping for a number of languages.](https://github.com/cocos2d/cocos2d-html5/pull/3450)
+     
+      * [Added support for high definition text in high density screens.](https://github.com/cocos2d/cocos2d-html5/pull/3294)
+
 - id: lasana
   title: Lasaña, a temporary file hosting service
   type: software
