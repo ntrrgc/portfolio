@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Gamemáticas: algoritmos para videojuegos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Algoritmos y fórmulas para hacer videojuegos 2D y 3D">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gamemáticas: algoritmos para videojuegos">
+<meta property="og:url" content="http://ntrrgc.me/gamematicas/index.html">
+<meta property="og:site_name" content="Gamemáticas: algoritmos para videojuegos">
+<meta property="og:description" content="Algoritmos y fórmulas para hacer videojuegos 2D y 3D">
+<meta property="og:locale" content="es_ES">
+<meta property="article:author" content="Alicia Boya García">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="atom.xml" title="Gamemáticas: algoritmos para videojuegos" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/attachments/gamematicas/images/favicon.png">
+  
+  <link rel="canonical" href="http://ntrrgc.me/gamematicas/">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+
+  
+<link rel="stylesheet" href="/attachments/gamematicas/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-60156077-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" class="bgcol-pri-0">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/attachments/gamematicas/" id="logo">Gamemáticas</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/attachments/gamematicas/">Inicio</a>
+        
+          <a class="main-nav-link" href="/attachments/gamematicas/articulos">Artículos</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search"
+                 id="search-query"
+                 results="0"
+                 class="search-form-input"
+                 placeholder="Buscar"><button type="submit" class="search-form-submit">&#xF002;</button>
+          <input type="hidden" name="q" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-colocar-objetos-siguiendo-formas-geometricas-parte-2-poligonos-y-estrellas" class="article article-type-post" itemscope
+         itemtype="http://schema.org/BlogPosting">
+  <meta itemprop="datePublished" content="2015-05-16T20:54:05.000Z">
+  <meta itemprop="url" content="http://ntrrgc.me/gamematicas/colocar-objetos-siguiendo-formas-geometricas-parte-2-poligonos-y-estrellas/">
+  <meta itemprop="inLanguage" content="es">
+  <meta itemprop="author" content="Alicia Boya García">
+  <div class="article-meta">
+    <a href="/attachments/gamematicas/colocar-objetos-siguiendo-formas-geometricas-parte-2-poligonos-y-estrellas/" class="article-date">
+  <time datetime="2015-05-16T20:54:05.000Z" itemprop="datePublished">16/05/2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/attachments/gamematicas/categorias/Geometria/">Geometría</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/attachments/gamematicas/colocar-objetos-siguiendo-formas-geometricas-parte-2-poligonos-y-estrellas/">Colocar objetos siguiendo formas geométricas, parte 2: polígonos y estrellas</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Hace tiempo vimos como <a href="/attachments/gamematicas/colocar-objetos-en-formas-geometricas-parte-1-circunferencia/">colocar objetos en un videojuego siguiendo la forma de una circunferencia</a>. En este artículo vamos a continuar con la serie, explicando cómo colocar objetos para dibujar segmentos (líneas), polígonos y estrellas.</p>
+<h1 id="Colocar-objetos-en-un-segmento"><a href="#Colocar-objetos-en-un-segmento" class="headerlink" title="Colocar objetos en un segmento"></a>Colocar objetos en un segmento</h1><p>Un segmento es una línea recta acotada por un punto de inicio (A) y un punto de fin (B). Para colocar objetos en un segmento lo dividiremos en un cierto número de partes iguales.</p>
+<p><img src="/attachments/gamematicas/images/divisiones.svg" alt="Un segmento dividido en cuatro partes iguales"></p>
+<p>Como podemos ver en el ejemplo anterior, dividiendo el segmento en cuatro partes obtenemos cinco puntos equidistantes donde colocar nuestros objetos. </p>
+<p>Nuestros puntos vienen dados por una posición $x$ (horizontal) y una posición $y$ (vertical). Restando la posición $x$ de B con la posición $x$ de A obtenemos el <em>ancho</em> del segmento, que podría ser negativo si B estuviera a la izquierda de A. De forma similar, restando las posiciones $y$ obtenemos el <em>alto</em> del segmento.</p>
+<p>Dividiendo el ancho y el alto entre un número de partes (en el ejemplo, cuatro) obtendremos el ancho y el alto de cada parte.</p>
+<p>Nuestros puntos equidistantes se obtendrán sumando a A el tamaño de una parte entre cero y cuatro veces (el número de partes). A continuación se muestra un ejemplo de cómo se podría implementar este algoritmo.</p>
+<pre><code>function drawSegment(ax, ay, bx, by, numPoints) &#123;
+  // Calculamos el alto y ancho del segmento
+  var w = bx - ax;
+  var h = by - ay;
+
+  // Calculamos el alto y ancho de las partes
+  var numParts = numPoints - 1;
+  var partW = w / numParts;
+  var partH = h / numParts;
+
+  // Para i entre 0 y `numPoints` (no incluido) ...
+  for (var i = 0; i &lt; numPoints; i++) &#123;
+    // Dibujamos un punto que será A sumado i
+    // veces el ancho y alto de la parte.
+    drawPoint(&#123;
+      x: ax + partW * i,
+      y: ay + partH * i
+    &#125;);
+  &#125;
+&#125;</code></pre>
+<h1 id="Poligonos-regulares"><a href="#Poligonos-regulares" class="headerlink" title="Polígonos regulares"></a>Polígonos regulares</h1><p>Un polígono es un conjunto de segmentos unidos entre sí. En general, todo segmento tiene un punto de inicio y un punto de fin. En el caso de un polígono, el punto de inicio de un segmento es el punto de fin del anterior.<br>Aquí vamos a centrarnos en los polígonos regulares, es decir, aquellos que todos los segmentos que los forman tienen la misma longitud, puesto que son los que utilizaremos después como base para hacer estrellas.</p>
+<p>Un polígono regular se construye a partir de una circunferencia, dividiéndola en tantos arcos como lados queramos para nuestro polígono. Todos los arcos deben tener el mismo ángulo. La siguiente imagen muestra como ejemplo la construcción de un pentágono.</p>
+<p><img src="/attachments/gamematicas/images/pentagono.svg" alt="El pentágono se construye dividiendo una circunferencia en cinco arcos iguales y uniendo los puntos de corte"></p>
+<p>El proceso para obtener estos puntos <a href="/colocar-objetos-en-formas-geometricas-parte-1-circunferencia/#Colocar_objetos_alrededor_del_c%C3%ADrculo">es exactamente el mismo que veíamos para representar un círculo en el artículo anterior</a>. Dividimos el ángulo de la circunferencia completa ($2\pi$ radianes o 360º) entre el número de lados y utilizamos seno y coseno para calcular los puntos que definen el polígono.</p>
+<pre><code>function calcPolygonVertices(numVertices, centerX,
+                             centerY, radius, rotation)
+&#123;
+  // Dividimos el ángulo de la circunferencia completa 
+  // (2pi=360°) entre el número de vértices del polígono.
+  // De esta manera obtendremos el ángulo de los lados.
+  var angInterval = 2 * Math.PI / numVertices;
+
+  // Inicializamos una lista de vértices
+  var vertices = [];
+  for (var i = 0; i &lt; numVertices; i++) &#123;
+    // Multiplicamos el número de vértice por el ángulo 
+    // de los lados
+    var x = centerX + 
+        Math.cos(i * angInterval + rotation) * radius;
+    var y = centerY +
+        Math.sin(i * angInterval + rotation) * radius;
+    vertices.push(&#123;x: x, y: y&#125;);
+  &#125;
+  return vertices;
+&#125;</code></pre>
+<p>Sin embargo, en este caso no nos conformaremos con pintar los puntos, sino que los utilizaremos de entrada para la función anterior de manera que podamos dibujar segmentos.</p>
+<pre><code>function drawPolygon(numVertices, centerX, centerY, radius,
+                     rotation, numPointsSegment)
+&#123;
+  var vertices = calcPolygonVertices(numVertices, centerX,
+      centerY, radius, rotation);
+
+  // Unimos cada vértice con el siguiente
+  for (var numVertex = 0; numVertex &lt; numVertices;
+       numVertex++)
+  &#123;
+    var vertexA = vertices[numVertex];
+    var vertexB = vertices[numVertex + 1];
+    drawPolygonSegment(vertexA.ax, vertexA.ay,
+                       vertexB.ax, vertexB.ay,
+                       numPointsSegment);
+  &#125;
+&#125;</code></pre>
+<p>La función <code>drawPolygonSegment</code> es igual que la función <code>drawSegment</code> explicada antes, con una sutil diferencia: el último punto del segmento no es dibujado, ya que coincidirá con el primer punto del siguiente lado del polígono. </p>
+<pre><code>function drawPolygonSegment(ax, ay, bx, by, numPoints) &#123;
+  // Calculamos el alto y ancho del segmento
+  var w = bx - ax;
+  var h = by - ay;
+
+  // Calculamos el alto y ancho de las partes
+  var numParts = numPoints - 1;
+  var partW = w / numParts;
+  var partH = h / numParts;
+
+  // Para i entre 0 y `numPoints - 1` (no incluido) ...
+  // El último punto no se dibuja porque coincide con
+  // el primer punto del siguiente segmento
+  for (var i = 0; i &lt; numPoints - 1; i++) &#123;
+    // Dibujamos un punto que será A sumado i
+    // veces el ancho y alto de la parte.
+    drawPoint(&#123;
+      x: ax + partW * i,
+      y: ay + partH * i
+    &#125;);
+  &#125;
+&#125;</code></pre>
+<div class="demo" data-demo-name="star" data-demo-tag="polygon">
+  <header class="phone">Demostración en vivo</header>
+  <div class="demo-wrapper">
+    <div class="canvas-wrapper">
+      <canvas width="300" height="200"></canvas>
+    </div>
+    <noscript>La demostración en vivo no funciona sin JavaScript :(</noscript>
+    <div class="controls-wrapper">
+      <header class="non-phone">Demostración en vivo</header>
+      <div class="demo-controls"></div>
+    </div>
+  </div>
+</div>
+
+
+<h2 id="Hacer-los-poligonos-animables"><a href="#Hacer-los-poligonos-animables" class="headerlink" title="Hacer los polígonos animables"></a>Hacer los polígonos animables</h2><p>Añadiendo un desplazamiento a la posición de los puntos utilizados para dibujar los segmentos y modificando su valor a lo largo del tiempo es posible mostrar polígonos animados, donde los objetos no estén colocados en posiciones estáticas  sino que se muevan siguiendo la forma del polígono.</p>
+<p>El desplazamiento se especificará como una variable numérica entre 0 y 1. Un valor de 0 será sinónimo de no desplazamiento, mientras con valor de 1 significará que el primer punto estaría en la posición en la que habría estado el segundo si no se hubiera aplicado desplazamiento.</p>
+<p>El siguiente bloque de código muestra la función de dibujado de segmentos de polígonos adaptada para soportar desplazamiento. Es similar a la anterior, pero añadimos un nuevo parámetro <code>offset</code> y  y se lo sumamos al número de punto.</p>
+<pre><code>function drawPolygonSegment(ax, ay, bx, by, numPoints,
+                            offset)
+&#123;
+  // Calculamos el alto y ancho del segmento
+  var w = bx - ax;
+  var h = by - ay;
+
+  // Calculamos el alto y ancho de las partes
+  var numParts = numPoints - 1;
+  var partW = w / numParts;
+  var partH = h / numParts;
+
+  // Para i entre 0 y `numPoints - 1` (no incluido) ...
+  // El último punto no se dibuja porque coincide con
+  // el primer punto del siguiente segmento
+  for (var i = 0; i &lt; numPoints - 1; i++) &#123;
+    // Dibujamos un punto que será A sumado i
+    // veces el ancho y alto de la parte.
+    drawPoint(&#123;
+      x: ax + partW * (i + offset),
+      y: ay + partH * (i + offset)
+    &#125;);
+  &#125;
+&#125;</code></pre>
+<p>Sólo quedaría añadir este parámetro también a la función de dibujar polígono y modificar su valor en cada frame.</p>
+<h1 id="Estrellas"><a href="#Estrellas" class="headerlink" title="Estrellas"></a>Estrellas</h1><p>A partir de un polígono regular, es fácil construir una estrella. Para ello se sigue el mismo procedimiento que en el caso del polígono, con una diferencia: Cada vértice del polígono será unido con el que esté a $n \geq 2$ posiciones después de él. A este $n$ lo denominaremos el <em>paso</em> de la estrella.</p>
+<p>En la siguiente figura se muestra la construcción de una estrella de cinco puntas con paso 2:</p>
+<p><img src="/attachments/gamematicas/images/pentagrama.svg" alt="Una estrella de cinco puntas dibujada a partir de un polígono"></p>
+<p>El siguiente algoritmo nos permitiría construir una estrella de este tipo:</p>
+<pre><code>function drawStar(numVertices, centerX, centerY, radius,
+                  rotation, numPointsSegment, starStep,
+                  segmentOffset)
+&#123;
+  var vertices = calcPolygonVertices(numVertices, centerX,
+      centerY, radius, rotation);
+
+  // Una estrella tiene el doble de segmentos que vértices
+  var numSegments = vertices.length * 2;
+  var indexVertexA = 0; // Empezamos trazando desde el
+                        // vértice 0
+  for (var i = 0; i &lt; numSegments; i++) &#123;
+    // El vértice destino del segmento es aquel que esté a
+    // `starStep` posiciones del vértice de origen
+    var indexVertexB = (indexVertexA + starStep)
+        % vertices.length;
+
+    // Dibujamos el segmento
+    var vertexA = vertices[indexVertexA];
+    var vertexB = vertices[indexVertexB];
+    drawPolygonSegment(vertexA.ax, vertexA.ay,
+        vertexB.ax, vertexB.ay,
+        numPointsSegment, segmentOffset);
+
+    // El vértice destino de este segmento será el vértice
+    // inicio del siguiente
+    indexVertexA = indexVertexB;
+  &#125;
+&#125;</code></pre>
+<h2 id="Estrellas-no-conectadas"><a href="#Estrellas-no-conectadas" class="headerlink" title="Estrellas no conectadas"></a>Estrellas no conectadas</h2><p>Con el algoritmo anterior no es posible dibujar algunos tipos de estrellas. Es el caso de la estrella de seis puntas o hexagrama, mostrada en la figura siguiente.</p>
+<p><img src="/attachments/gamematicas/images/hexagrama.svg" alt="Estrella de seis puntas"></p>
+<p>Al dibujar la estrella de seis puntas con un paso de dos, nos encontramos con que de después de tres pasos volvemos a al vértice inicial. Los segmentos de la estrella de seis puntas, no están todos conectados. </p>
+<p>Cuando se dé este caso, para terminar la estrella deberemos repetir el proceso desde el vértice siguiente a aquel en el que empezamos. </p>
+<p>El siguiente fragmento de código muestra cómo dibujar una estrella de forma que se tenga en cuenta el caso de que haya grupos de segmentos desconectados. </p>
+<pre><code>function drawStar(numVertices, centerX, centerY, radius,
+                  rotation, numPointsSegment, starStep,
+                  segmentOffset)
+&#123;
+  var vertices = calcPolygonVertices(numVertices,
+      centerX, centerY, radius, rotation);
+
+  // Una estrella tiene el doble de segmentos que
+  // vértices
+  var numSegments = vertices.length * 2;
+  // Empezamos trazando desde el vértice 0
+  var indexStartVertex = 0;
+  var indexVertexA = indexStartVertex;
+  for (var i = 0; i &lt; numSegments; i++) &#123;
+    // El vértice destino del segmento es aquel que esté
+    // a `starStep` posiciones del vértice de origen
+    var indexVertexB = (indexVertexA + starStep)
+        % vertices.length;
+
+    // Dibujamos el segmento
+    var vertexA = vertices[indexVertexA];
+    var vertexB = vertices[indexVertexB];
+    drawPolygonSegment(vertexA.ax, vertexA.ay,
+        vertexB.ax, vertexB.ay,
+        numPointsSegment, segmentOffset);
+
+    // El vértice destino de este segmento será el
+    // vértice inicio del siguiente
+    indexVertexA = indexVertexB;
+
+    // Si volvemos al punto de inicio y todavía quedan
+    // más pasos, estamos ante una estrella desconectada.
+    // Deberemos repetir el proceso empezando a dibujar
+    // por el punto siguiente.
+    if (indexVertexA == indexStartVertex) &#123;
+      indexStartVertex = (indexStartVertex + 1)
+          % vertices.length;
+      indexVertexA = indexStartVertex;
+    &#125;
+  &#125;
+&#125;</code></pre>
+<h2 id="Demostracion"><a href="#Demostracion" class="headerlink" title="Demostración"></a>Demostración</h2><p>La siguiente demo muestra la construcción de una estrella haciendo uso de los algoritmos explicados.</p>
+<div class="demo" data-demo-name="star" data-demo-tag="star-construction">
+  <header class="phone">Demostración en vivo</header>
+  <div class="demo-wrapper">
+    <div class="canvas-wrapper">
+      <canvas width="300" height="200"></canvas>
+    </div>
+    <noscript>La demostración en vivo no funciona sin JavaScript :(</noscript>
+    <div class="controls-wrapper">
+      <header class="non-phone">Demostración en vivo</header>
+      <div class="demo-controls"></div>
+    </div>
+  </div>
+</div>
+
+
+<h2 id="Animacion"><a href="#Animacion" class="headerlink" title="Animación"></a>Animación</h2><p>Podemos modificar en cada frame los valores algunos parámetros de la función <code>drawStar</code> para crear animaciones:</p>
+<ul>
+<li><code>rotation</code> define la rotación global de la estrella. Con un valor de cero el primero vértice de la estrella está situado en la parte derecha de la circunferencia (0°). Modificando este valor periódicamente podemos conseguir que la estrella gire. </li>
+<li><code>segmentOffset</code> define el desplazamiento de los objetos utilizados para dibujar los segmentos de la estrella. Modificando periódicamente este valor entre cero y uno conseguiremos que los objetos que utilicemos para usemos para dibujar la estrella no estén situados estáticamente sino que sigan la forma de la estrella.</li>
+<li><code>radius</code> define el radio de la circunferencia sobre la que se inscribe la estrella. Animando el valor de esta variable podemos hacer que crezca o decrezca.</li>
+<li><code>centerX</code> y <code>centerY</code> definen la posición de la estrella. Animando estos valores podemos hacer que se mueva por la pantalla.</li>
+</ul>
+<p>La siguiente demostración permite animar alguno de de estos valores:</p>
+<div class="demo" data-demo-name="star" data-demo-tag="star-animation">
+  <header class="phone">Demostración en vivo</header>
+  <div class="demo-wrapper">
+    <div class="canvas-wrapper">
+      <canvas width="300" height="200"></canvas>
+    </div>
+    <noscript>La demostración en vivo no funciona sin JavaScript :(</noscript>
+    <div class="controls-wrapper">
+      <header class="non-phone">Demostración en vivo</header>
+      <div class="demo-controls"></div>
+    </div>
+  </div>
+</div>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ntrrgc.me/gamematicas/colocar-objetos-siguiendo-formas-geometricas-parte-2-poligonos-y-estrellas/" data-id="ckjfrxsbj0001ljja46bpen2e" class="share-button">Compartir</a>
+      
+      
+        <a href="http://ntrrgc.me/gamematicas/colocar-objetos-siguiendo-formas-geometricas-parte-2-poligonos-y-estrellas/#disqus_thread" class="article-comment-link">Comentarios</a>
+      
+      
+<div class="tag-classification">
+Clasificado en:
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/attachments/gamematicas/tags/colocacion-de-objetos/" rel="tag">colocación de objetos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/attachments/gamematicas/tags/geometria/" rel="tag">geometría</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/attachments/gamematicas/tags/poligonos/" rel="tag">polígonos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/attachments/gamematicas/tags/trigonometria/" rel="tag">trigonometría</a></li></ul>
+</div>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/attachments/gamematicas/pagina/2/">2</a><a class="page-number" href="/attachments/gamematicas/pagina/3/">3</a><a class="page-number" href="/attachments/gamematicas/pagina/4/">4</a><a class="extend next" rel="next" href="/attachments/gamematicas/pagina/2/">Siguiente &raquo;</a>
+    </nav>
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Gamemáticas<br>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/attachments/gamematicas/" class="mobile-nav-link">Inicio</a>
+  
+    <a href="/attachments/gamematicas/articulos" class="mobile-nav-link">Artículos</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'gamematicas';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="/attachments/gamematicas/js/bluebird.min.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/base.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/circle.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/projectile.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/star.js"></script>
+
+
+
+
+
+<script src="/attachments/gamematicas/js/script.js"></script>
+
+
+<script src="/attachments/gamematicas/js/share.js"></script>
+
+<script>
+  new Share(".share-button", {
+    ui: {
+      button_text: 'Compartir',
+      flyout: 'top right'
+    }
+  });
+</script>
+
+  </div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+    MathJax.InputJax.TeX.Definitions.number =
+      /^(?:[0-9]+(?:\.[0-9]{3})*(?:\{,\}[0-9]*)*|\{,\}[0-9]+)/
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+/* Does not work when the phone is rotated :(
+MathJax.Hub.Config({
+  "HTML-CSS": { linebreaks: { automatic: true, width: 'container' } },
+         SVG: { linebreaks: { automatic: true, width: 'container' } }
+});
+*/
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>

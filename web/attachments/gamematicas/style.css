@@ -1,0 +1,536 @@
+@import url(css/base16-default.light.css);
+
+@font-face {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    src: url("css/fonts/fontawesome-webfont.eot?v=#4.0.3");
+    src: url("css/fonts/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"),
+    url("css/fonts/fontawesome-webfont.woff?v=#4.0.3") format("woff"),
+    url("css/fonts/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"),
+    url("css/fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
+}
+
+/* Font sizes for phone, made with gridlover.net */
+body {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0 auto;
+}
+h1 {
+    font-size: 1.75em;
+    line-height: 1.714285714em;
+    margin-top: 1.71428571em;
+    margin-bottom: 0.85714286em;
+}
+h2 {
+    font-size: 1.4375em;
+    line-height: 1.043478261em;
+    margin-top: 2.08695652em;
+    margin-bottom: 1.04347826em;
+}
+h3 {
+    font-size: 1.1875em;
+    line-height: 1.263157895em;
+    margin-top: 1.2631579em;
+    margin-bottom: 1.2631579em;
+}
+h4 {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+p, ul, ol, pre, table, blockquote {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+/* Sanitation */
+hr {
+    border: 1px solid;
+    margin: -1px 0;
+}
+ul ul, ol ol, ul ol, ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+b, strong, em, small, code {
+    line-height: 1;
+}
+sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+sub {
+    top: 0.4em;
+}
+
+@media (min-width: 768px) {
+    /* begin gridlover.net */
+    body {
+        font-size: 1.125em;
+        line-height: 1.5em;
+        margin: 0 auto;
+    }
+    h1 {
+        font-size: 2.388888889em;
+        line-height: 1.255813954em;
+        margin-top: 1.25581395em;
+        margin-bottom: 0.62790698em;
+    }
+    h2 {
+        font-size: 1.777777778em;
+        line-height: 1.6875em;
+        margin-top: 1.6875em;
+        margin-bottom: 0.84375em;
+    }
+    h3 {
+        font-size: 1.333333333em;
+        line-height: 1.125em;
+        margin-top: 1.125em;
+        margin-bottom: 1.125em;
+    }
+    h4 {
+        font-size: 1em;
+        line-height: 1.5em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
+    p, ul, ol, pre, table, blockquote {
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
+
+    /* Sanitation */
+    hr {
+        border: 1px solid;
+        margin: -1px 0;
+    }
+    ul ul, ol ol, ul ol, ol ul {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    b, strong, em, small, code {
+        line-height: 1;
+    }
+    sup, sub {
+        vertical-align: baseline;
+        position: relative;
+        top: -0.4em;
+    }
+    sub {
+        top: 0.4em;
+    }
+    /* end gridlover.net */
+}
+
+html {
+    font-family: 'proxima-nova', Arial, sans-serif;
+}
+
+.article-meta {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: #F34F69;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#header {
+    padding: 13px;
+}
+
+.bgcol-pri-0 {
+    background: #7ACA5C;
+}
+
+header {
+    padding: 0;
+    margin: 0;
+    font-size: 19px;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+div#header-title {
+    text-align: center;
+}
+
+#logo-wrap {
+    background: url(images/gamematicas.svg) no-repeat 10px;
+    margin: 0 auto;
+    display: block;
+    width: 330px;
+}
+
+#logo {
+    display: block;
+    height: 57px;
+    padding-left: 70px;
+    padding-top: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 38px;
+}
+
+#wrap > .outer {
+    margin: 0 auto;
+}
+
+#wrap p, #wrap h1, #wrap h2, #wrap h3, #wrap h4, #wrap ul, #wrap pre, #wrap article footer, #article-nav, #comments, #page-nav, .archive-article-date, .archive-year {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#page-nav {
+    text-align: center;
+}
+
+#page-nav a, #page-nav span {
+    margin: 0 5px;
+}
+
+nav#main-nav {
+    text-align: center;
+}
+
+a.main-nav-link {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.demo {
+    display: block;
+    margin: 30px auto;
+    text-align: center;
+    border: 1px solid #7ACA5C;
+    line-height: 0;
+}
+
+.demo header {
+    background: #7ACA5C;
+    color: white;
+    height: 30px;
+    padding-top: 10px;
+    margin: 0;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.demo br {
+    display: none;
+}
+
+.demo canvas {
+    background: white;
+}
+
+.demo-controls {
+    padding: 5px 0px;
+    display: table;
+    width: 100%;
+    margin-top: 0;
+}
+
+.demo-controls label {
+    display: table-row;
+}
+
+.demo-controls input {
+
+}
+
+.demo-controls span {
+    height: 32px;
+    line-height: 16px;
+    text-align: right;
+}
+
+.demo-controls span, .demo-controls output {
+    display: table-cell;
+    vertical-align: middle;
+    width: 1px;
+    padding: 0 5px;
+    white-space: nowrap;
+}
+
+.demo-controls input[type="range"] {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.demo-controls .check-wrapper {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+    width: 29px;
+}
+
+.demo-controls output {
+    width: 74px;
+    text-align: center;
+}
+
+span.check-label {
+    text-align: left;
+    vertical-align: middle;
+    width: auto;
+}
+
+footer#footer {
+    background: #7ACA5C;
+    color: white;
+    text-align: center;
+    padding: 30px;
+
+    /* Always at the bottom */
+    height: 87px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#wrap {
+    padding-bottom: 87px; /* height of #footer */
+}
+
+#container {
+    position: relative;
+    min-height: 100%;
+}
+
+html, body {
+    height: 100%;
+}
+
+div#search-form-wrap {
+    text-align: center;
+    display: inline-block;
+}
+
+.search-form-submit {
+    font-family: FontAwesome;
+}
+
+nav#mobile-nav {
+    display: none;
+}
+
+.controls-wrapper {
+    background: #7ACA5C;
+    color: #FFFFFF;
+}
+
+section#main {
+    padding: 20px 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .phone {
+        display: none;
+    }
+
+    .demo-wrapper {
+        display: table;
+    }
+
+    .canvas-wrapper {
+        display: table-cell;
+
+        vertical-align: middle;
+    }
+
+    .controls-wrapper {
+        display: table-cell;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        padding: 0px 10px;
+    }
+
+    section#main {
+        padding: 20px 60px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .non-phone {
+        display: none;
+    }
+}
+
+.highlight pre {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.line {
+    height: 18px;
+    line-height: 18px;
+}
+
+.gutter pre {
+    text-align: right;
+    color: gray;
+    background: #D1F0C6;
+    padding: 0 8px;
+}
+
+.highlight {
+    overflow: auto;
+    margin: 0;
+    /* border: 1px solid #7ACA5C; */
+    padding: 0;
+}
+
+.code, .gutter {
+    padding: 0px;
+}
+
+.highlight table {
+    border-collapse: collapse;
+}
+
+.code {
+    padding-left: 7px;
+}
+
+.MathJax_Display {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+input.search-form-input {
+    background: white;
+    padding: 2px;
+}
+
+input.search-form-input, .search-form-submit {
+    height: 22px;
+    border: none;
+    vertical-align: top;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+button.search-form-submit {
+    width: 35px;
+    background: #028CAC;
+    color: white;
+}
+
+form.search-form {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+nav#main-nav {
+    display: inline-block;
+}
+
+div#header-inner {
+    text-align: center;
+}
+
+p img {
+    display: block;
+    margin: auto;
+}
+
+pre {
+    background: rgb(252, 252, 252);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input[type="search"] {
+    -webkit-appearance: none;
+}
+
+input.search-form-input {
+    border-radius: 10px 0px 0px 10px;
+    margin-right: 0;
+    padding-left: 5px;
+    font-size: 16px;
+    width: 180px;
+}
+
+button.search-form-submit {
+    margin-left: 0;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.demo {
+    max-width: 790px;
+}
+
+.share-button {
+    margin-bottom: 25px;
+}
+
+a.article-comment-link {
+    display: inline-block;
+    background: #028CAC;
+    border-radius: 5px;
+    padding: 0px 10px;
+    color: white;
+    height: 30px;
+    padding-top: 1px;
+    box-sizing: border-box;
+}
+
+li.article-tag-list-item + li::before {
+    content: ", ";
+}
+ul.article-tag-list, .article-tag-list > li {
+    display: inline !important;
+    padding-left: 0;
+}
+
+ul {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+pre {
+    overflow: auto;
+}
+
+img {
+    max-width: 100%;
+}
+
+article {
+    padding-bottom: 10px;
+}
+
+code {
+    font-family: monospace;
+    white-space: pre-wrap;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}

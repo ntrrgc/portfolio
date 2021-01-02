@@ -1,0 +1,97 @@
+/*
+
+    Name:       Base16 Default Light
+    Author:     Chris Kempson (http://chriskempson.com)
+
+    highlight.js v8.0 template by Jan T. Sott (https://github.com/idleberg/base16-highlight.js)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+/* Default Comment */
+.comment,
+.title {
+  color: #505050;
+}
+
+/* Default Red */
+.variable,
+.attribute,
+.tag,
+.regexp,
+.ruby .constant,
+.xml .tag .title,
+.xml .pi,
+.xml .doctype,
+.html .doctype,
+.css .id,
+.css .class,
+.css .pseudo {
+  color: #ac4142;
+}
+
+/* Default Orange */
+.number,
+.preprocessor,
+.built_in,
+.literal,
+.params,
+.constant {
+  color: #d28445;
+}
+
+/* Default Yellow */
+.ruby .class .title,
+.css .rules .attribute {
+  color: #f4bf75;
+}
+
+/* Default Green */
+.string,
+.value,
+.inheritance,
+.header,
+.ruby .symbol,
+.xml .cdata {
+  color: #90a959;
+}
+
+/* Default Aqua */
+.css .hexcolor {
+  color: #75b5aa;
+}
+
+/* Default Blue */
+.function,
+.python .decorator,
+.python .title,
+.ruby .function .title,
+.ruby .title .keyword,
+.perl .sub,
+.javascript .title,
+.coffeescript .title {
+  color: #6a9fb5;
+}
+
+/* Default Purple */
+.keyword,
+.javascript .function {
+  color: #aa759f;
+}
+
+.hljs {
+  display: block;
+  background: #f5f5f5;
+  color: #303030;
+  padding: 0.5em;
+}
+
+.coffeescript .javascript,
+.javascript .xml,
+.tex .formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .cdata {
+  opacity: 0.5;
+}

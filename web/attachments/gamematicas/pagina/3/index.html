@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Gamemáticas: algoritmos para videojuegos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Algoritmos y fórmulas para hacer videojuegos 2D y 3D">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gamemáticas: algoritmos para videojuegos">
+<meta property="og:url" content="http://ntrrgc.me/gamematicas/pagina/3/index.html">
+<meta property="og:site_name" content="Gamemáticas: algoritmos para videojuegos">
+<meta property="og:description" content="Algoritmos y fórmulas para hacer videojuegos 2D y 3D">
+<meta property="og:locale" content="es_ES">
+<meta property="article:author" content="Alicia Boya García">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="atom.xml" title="Gamemáticas: algoritmos para videojuegos" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/attachments/gamematicas/images/favicon.png">
+  
+  <link rel="canonical" href="http://ntrrgc.me/gamematicas/pagina/3/">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+
+  
+<link rel="stylesheet" href="/attachments/gamematicas/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-60156077-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" class="bgcol-pri-0">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/attachments/gamematicas/" id="logo">Gamemáticas</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/attachments/gamematicas/">Inicio</a>
+        
+          <a class="main-nav-link" href="/attachments/gamematicas/articulos">Artículos</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search"
+                 id="search-query"
+                 results="0"
+                 class="search-form-input"
+                 placeholder="Buscar"><button type="submit" class="search-form-submit">&#xF002;</button>
+          <input type="hidden" name="q" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-el-tiro-parabolico-en-2d" class="article article-type-post" itemscope
+         itemtype="http://schema.org/BlogPosting">
+  <meta itemprop="datePublished" content="2015-02-23T14:19:41.000Z">
+  <meta itemprop="url" content="http://ntrrgc.me/gamematicas/el-tiro-parabolico-en-2d/">
+  <meta itemprop="inLanguage" content="es">
+  <meta itemprop="author" content="Alicia Boya García">
+  <div class="article-meta">
+    <a href="/attachments/gamematicas/el-tiro-parabolico-en-2d/" class="article-date">
+  <time datetime="2015-02-23T14:19:41.000Z" itemprop="datePublished">23/02/2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/attachments/gamematicas/categorias/Fisica/">Física</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/attachments/gamematicas/el-tiro-parabolico-en-2d/">El tiro parabólico en 2D</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>En muchos juegos se necesita en algún momento lanzar proyectiles. En esta guía exploraremos la física detrás de estos tiros de cara a realizar una implementación sencilla de tiros parabólicos sin necesitar bibliotecas de física especializadas.</p>
+<p>Para empezar con algo simple, consideremos que nuestro juego tiene dos dimensiones: altura y profundidad.</p>
+<h2 id="Introduccion-a-los-vectores"><a href="#Introduccion-a-los-vectores" class="headerlink" title="Introducción a los vectores"></a>Introducción a los vectores</h2><p>En física, a menudo se encuentran casos donde una magnitud (cantidad) y una dirección están intimamente relacionadas a la hora de describir un fenómeno. Un ejemplo clásico es la velocidad: es tan importante la magnitud de la velocidad de un coche (habitualmente medida en km/h) como en qué dirección se está moviendo.</p>
+<p>Cuando se dan estas relaciones es habitual tratar magnitud y dirección de manera conjunta. Cuando una variable matemática representa estos dos conceptos simultáneamente, se le denomina vector y se representa colocando una flecha encima del nombre de la variable, por ejemplo, $\vec{v}$.</p>
+<p>Hay dos formas habituales de expresar el valor de un vector. Una forma es indicar la magnitud y la dirección (ángulo) expresamente. Por ejemplo:</p>
+<p>$$\vec{v} = 100_{60^{\circ}}\space km/h$$</p>
+<p>Esta fórmula representaría la velocidad de un coche que se mueve a 100 km/h en dirección 60º. (medidos con respecto a un ángulo que consideremos origen, por ejemplo el Norte geográfico y en un determinado sentido). Cuando usemos ángulos en vectores debemos tener en cuenta siempre qué dirección consideraremos como referencia y en qué sentido haremos la medición. Por ejemplo, en este caso podríamos considerar que el ángulo se mide en grados desde el Norte geográfico hasta la posición a medir girando en sentido de las agujas del reloj.</p>
+<p>En matemáticas, una convención habitual es considerar que 0º es el plano horizontal y los ángulos positivos están en el sentido contrario a las agujas del reloj, por ejemplo:</p>
+<p><img src="/attachments/gamematicas/images/angulo.svg" alt="Una imagen de un vector con el suelo como referencia"></p>
+<p>Otra forma de expresar un vector es descomponer magnitud y dirección en coordenadas. Por ejemplo:</p>
+<p>$$\vec{v} = (30, 50)\space km/h$$</p>
+<p>En este caso estaríamos representando la velocidad de un coche que cada hora avanza 30 km en el eje horizontal (x) y 50 km en el eje vertical (y). Los ejes horizontal y vertical se pueden representar también como vectores, habitualmente con los nombres $\vec{i}$ y $\vec{j}$ para los ejes $x$ e $y$ respectivamente. Por ejemplo, el mismo vector anterior se podría representar como:</p>
+<p>$$\vec{v} = 30\vec{i} + 50\vec{j}\space km/h$$</p>
+<p>Cada representación tiene sus ventajas e inconvenientes. En nuestros ejemplos utilizaremos la representación de coordenadas, con una variable por coordenada, por ejemplo: <code>velX</code>, <code>velY</code>. En esta representación es muy fácil sumar vectores.</p>
+<h2 id="Objetos"><a href="#Objetos" class="headerlink" title="Objetos"></a>Objetos</h2><p>Para incorporar física en nuestros objetos debemos añadirles propiedades que reflejen el estado de todas las variables físicas que sean de nuestro interés. En este caso necesitamos, como mínimo:</p>
+<ul>
+<li>Posición (x, y): Dónde está el objeto en este momento.</li>
+<li>Velocidad (vector): Hacia dónde se mueve el objeto y cómo de rápido lo hace.</li>
+</ul>
+<p>Cada objeto de nuestro juego deberá tener una función de actualización donde sus variables físicas sean actualizadas. Esta función será ejecutada de manera periódica, típicamente una vez por frame.</p>
+<p>En nuestro ejemplo, la función de actualización se encargaría de actualizar la posición en función de la velocidad. Si la velocidad del objeto es 2 píxels por frame y la función de actualización se ejecuta cada frame, deberá sumarse 2 a la posición del objeto.</p>
+<pre><code>function update() &#123;
+  this.posX = this.posX + this.velX;
+  this.posY = this.posY + this.velY;
+&#125;</code></pre>
+<h2 id="Lanzar-un-proyectil"><a href="#Lanzar-un-proyectil" class="headerlink" title="Lanzar un proyectil"></a>Lanzar un proyectil</h2><p>Lanzar un proyectil consiste en aplicarle una velocidad. </p>
+<p>Sin ninguna fuerza que modifique la trayectoria del proyectil, éste se moverán línea recta. </p>
+<p>Es posible que en este paso necesitemos convertir una velocidad expresada en magnitud y dirección a formato de componentes $x$ e $y$. Para ello podemos hacer uso de trigonometría básica:</p>
+<pre><code>function shoot(speedMagnitude, speedDirection) &#123;
+    this.velX += speedMagnitude * Math.cos(speedDirection);
+    this.velY += speedMagnitude * Math.sin(speedDirection);
+&#125;</code></pre>
+<h2 id="Gravedad"><a href="#Gravedad" class="headerlink" title="Gravedad"></a>Gravedad</h2><p>En el mundo real, los objetos en movimiento están sometidos a fuerzas, que los aceleran en determinadas direcciones. Particularmente, la gravedad cada usa que los proyectiles caigan.</p>
+<p>Para objetos en la Tierra de una masa pequeña comparada a la de un planeta, la aceleración causada por la gravedad es constante y conocida: 9,8 $m/s^2$. </p>
+<p>Esto significa que cada segundo, la velocidad del objeto se incrementa en 9,8 $m/s$ (metros por segundo) en dirección al centro de la Tierra. Cuanto más tiempo lleva cayendo, más rápido cae.</p>
+<p>Por supuesto este movimiento cesa cuando el objeto llega al suelo. (Realmente la gravedad sigue haciendo su trabajo, pero aparece una fuerza de tensión en sentido contrario ejercida por el suelo que causa que el objeto no se hunda.) </p>
+<p>Debemos tener en cuenta esto en nuestros programas para que nuestros objetos no caigan al eternamente al vacío (salvo que sea eso exactamente lo que queramos). </p>
+<p>Para tener en cuenta la gravedad  modificaremos la velocidad en nuestra función de actualización. Por ejemplo:</p>
+<pre><code>function update() &#123;
+    //En este ejemplo asumimos que y=0 es el suelo y las
+    // y&#39;s positivas están encima del suelo.
+
+    // La gravedad modifica la velocidad del objeto,
+    // siempre que no esté en el suelo.
+    if (this.y &gt; 0) &#123;
+        var gravity = 9.8; // píxels/frame²
+        this.velY = this.velY - gravity;
+    &#125;
+
+    // Movemos el objeto de acuerdo a su velocidad.
+    this.posX = this.posX + this.velX;
+    // Utilizamos la función máximo para que el objeto
+    // no pueda caer a una posición subterránea.
+    this.posY = Math.max(this.posY + this.velY, 0);
+&#125;</code></pre>
+<h2 id="Demostracion"><a href="#Demostracion" class="headerlink" title="Demostración"></a>Demostración</h2><p>En la siguiente demo se muestran una pequeña aplicación del tiro parabólico.</p>
+<div class="demo" data-demo-name="projectile" data-demo-tag="">
+  <header class="phone">Demostración en vivo</header>
+  <div class="demo-wrapper">
+    <div class="canvas-wrapper">
+      <canvas width="300" height="200"></canvas>
+    </div>
+    <noscript>La demostración en vivo no funciona sin JavaScript :(</noscript>
+    <div class="controls-wrapper">
+      <header class="non-phone">Demostración en vivo</header>
+      <div class="demo-controls"></div>
+    </div>
+  </div>
+</div>
+
+
+<h2 id="Extra-Rotacion-de-proyectiles"><a href="#Extra-Rotacion-de-proyectiles" class="headerlink" title="Extra: Rotación de proyectiles"></a>Extra: Rotación de proyectiles</h2><p>Muchos proyectiles, por su forma aerodinámica, giran sobre sí mismos conforme avanzan en su trayectoria. Es el caso de las flechas empleadas en la demostración anterior. Si no fuera por esta rotación, el movimiento sería algo extraño, como en la imagen siguiente:</p>
+<p><img src="/attachments/gamematicas/images/sin-rotacion.png" alt="Flechas siendo arrojadas sin describir ninguna rotación"></p>
+<p>En lugar de eso queremos algo así, como vimos en la demo:</p>
+<p><img src="/attachments/gamematicas/images/con-rotacion.png" alt="Flechas siendo arrojadas y modificando su rotación con la trayectoria"></p>
+<p>Afortunadamente, este efecto es fácil de simular. Observa la siguiente ilustración de la posible trayectoria de una flecha. </p>
+<p><img src="/attachments/gamematicas/images/inclinacion.svg" alt="Aparece una línea curva con círculos rosados colocados en intervalos regulares"></p>
+<p>Los círculos rosados señalan los puntos de la trayectoria que realmente aparecerían en nuestro juego. Aunque en teoría la trayectoria tiene infinitos puntos, nuestro juego tendrá que conformarse con representar sólo algunos. Esto es lo que hacemos cuando actualizamos la posición de nuestros objetos sólo 60 veces por segundo. Por supuesto, en la imagen este efecto está muy exagerado.</p>
+<p>Si trazamos una línea entre dos puntos consecutivos obtendremos la inclinación que queremos para nuestro proyectil cuando se halle sobre uno de esos puntos de forma bastante precisa. A mayor sea la resolución (más cerca estén esos puntos), mayor será la precisión.</p>
+<p>Habiendo visto esto, el procedimiento es muy fácil. Sólo necesitamos conocer cómo ha cambiado nuestra posición durante el frame actual, o dicho de otro modo, en qué dirección nos estamos moviendo. Esto nos lo da el vector velocidad.</p>
+<p><img src="/attachments/gamematicas/images/inclinacion2.svg" alt="Sobre la imagen anterior se han unido dos puntos mediante un triángulo rectángulo"></p>
+<p>Teniendo un vector que indica nuestra dirección, es muy fácil extraer su ángulo utilizando razones trigonométricas. El ángulo del vector velocidad será el ángulo de rotación de nuestro proyectil.</p>
+<h3 id="Calculo-del-angulo-de-un-vector"><a href="#Calculo-del-angulo-de-un-vector" class="headerlink" title="Cálculo del ángulo de un vector"></a>Cálculo del ángulo de un vector</h3><p>El ángulo de un triángulo representado arriba se determina mediante la función <a target="_blank" rel="noopener" href="http://es.wikipedia.org/wiki/Arcotangente">arcotangente</a> (abreviada $atan$), que a su vez es la inversa de la función <a target="_blank" rel="noopener" href="http://es.wikipedia.org/wiki/Tangente_(trigonometr%C3%ADa)">tangente</a> (abreviada $tan$ o $tg$).</p>
+<p>La función tangente de un ángulo se define como la división de la longitud del cateto opuesto a ese ángulo entre la longitud del cateto contiguo.</p>
+<p>$$tan(\alpha) = \frac{cateto\ opuesto}{cateto\ contiguo}$$</p>
+<p>La arcotangente nos da la información contraria: a partir de la división del cateto opuesto y el cateto contiguo nos da el ángulo.</p>
+<p>$$atan\bigg( \frac{cateto\ opuesto}{cateto\ contiguo} \bigg) = \alpha$$</p>
+<p>La función arcotangente viene implementada en todos los lenguajes de programación de uso común. Sin embargo, tiene un defecto: sólo devuelve ángulos entre -90° y 90°. Esto es debido a que al hacer la división de cateto opuesto entre cateto contiguo estamos perdiendo información. Por ejemplo, basta con que uno de ellos sea negativo para que el resultado sea también negativo, y a partir del resultado no podemos determinar el signo de los operandos.</p>
+<p>Para obtener un ángulo entre 0° y 360° (o lo que es lo mismo entre -180° y 180°) debemos tener en cuenta el signo de los catetos del triángulo. Por ejemplo, si el cateto horizontal es negativo y el vertical es positivo, será necesario sumar 90° al ángulo devuelto por la arcotangente. Además con la función de arcotangente que tener un cuidado especial, ya que si el cateto contiguo es cero se producirá una excepción de división por cero.</p>
+<p>Debido a todos estos casos especiales, y siendo un problema muy habitual necesitar calcular un ángulo a partir de sus catetos, la mayoría de lenguajes de programación implementan una función <code>atan2</code> (<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Atan2#Definition_and_computation">definición en Wikipedia</a>) que recibe en parámetros separados la longitud del cateto opuesto y la longitud del cateto contiguo, encargándose la misma función de ajustar el valor de retorno en función del signo de los argumentos, así como de los valores límite.</p>
+<p>Su uso es muy sencillo. $y$ es la longitud del cateto opuesto (habitualmente altura) y $x$ la del cateto contiguo (habitualmente anchura). Cualquiera de ellos negativos si están al otro lado del origen de coordenadas:</p>
+<p>$$atan2(y, x) = \alpha$$</p>
+<h3 id="Funcion-de-actualizacion"><a href="#Funcion-de-actualizacion" class="headerlink" title="Función de actualización"></a>Función de actualización</h3><p>A continuación se muestra una función de actualización que actualiza la rotación del proyectil durante su trayectoria utilizando el método explicado:</p>
+<pre><code>function update() &#123;
+    // En este ejemplo asumimos que y=0 es el suelo y las
+    // y&#39;s positivas están encima del suelo.
+
+    // La gravedad modifica la velocidad del objeto,
+    // siempre que no esté en el suelo.
+    if (this.y &gt; 0) &#123;
+        var gravity = 9.8; // píxels/frame²
+        this.velY = this.velY - gravity;
+    &#125;
+
+    // Movemos el objeto de acuerdo a su velocidad.
+    this.posX = this.posX + this.velX;
+    // Utilizamos la función máximo para que el objeto
+    // no pueda caer a una posición subterránea.
+    this.posY = Math.max(this.posY + this.velY, 0);
+
+    // Actualizamos la rotación del objeto
+    this.angle = Math.atan2(this.velY, this.velX);
+&#125;</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ntrrgc.me/gamematicas/el-tiro-parabolico-en-2d/" data-id="ckjfrxsbo0004ljja31uv40g0" class="share-button">Compartir</a>
+      
+      
+        <a href="http://ntrrgc.me/gamematicas/el-tiro-parabolico-en-2d/#disqus_thread" class="article-comment-link">Comentarios</a>
+      
+      
+<div class="tag-classification">
+Clasificado en:
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/attachments/gamematicas/tags/fisica/" rel="tag">física</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/attachments/gamematicas/tags/simulacion/" rel="tag">simulación</a></li></ul>
+</div>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/attachments/gamematicas/pagina/2/">&laquo; Anterior</a><a class="page-number" href="/attachments/gamematicas/">1</a><a class="page-number" href="/attachments/gamematicas/pagina/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/attachments/gamematicas/pagina/4/">4</a><a class="extend next" rel="next" href="/attachments/gamematicas/pagina/4/">Siguiente &raquo;</a>
+    </nav>
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Gamemáticas<br>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/attachments/gamematicas/" class="mobile-nav-link">Inicio</a>
+  
+    <a href="/attachments/gamematicas/articulos" class="mobile-nav-link">Artículos</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'gamematicas';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="/attachments/gamematicas/js/bluebird.min.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/base.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/circle.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/projectile.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/star.js"></script>
+
+
+
+
+
+<script src="/attachments/gamematicas/js/script.js"></script>
+
+
+<script src="/attachments/gamematicas/js/share.js"></script>
+
+<script>
+  new Share(".share-button", {
+    ui: {
+      button_text: 'Compartir',
+      flyout: 'top right'
+    }
+  });
+</script>
+
+  </div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+    MathJax.InputJax.TeX.Definitions.number =
+      /^(?:[0-9]+(?:\.[0-9]{3})*(?:\{,\}[0-9]*)*|\{,\}[0-9]+)/
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+/* Does not work when the phone is rotated :(
+MathJax.Hub.Config({
+  "HTML-CSS": { linebreaks: { automatic: true, width: 'container' } },
+         SVG: { linebreaks: { automatic: true, width: 'container' } }
+});
+*/
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>

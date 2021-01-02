@@ -28,7 +28,7 @@ var escapeHTML = function (unsafe) {
 
 app
     .set('views', 'web')
-    .set('view engine', 'jade')
+    .set('view engine', 'pug')
     .get('/', function (req, res) {
         res.render('index', viewData)
     })
@@ -50,7 +50,7 @@ app
 
 app.locals.pretty = true;
 
-var watcher = chokidar.watch(['web/index.jade', 'web/*.js', '*.yaml'], {
+var watcher = chokidar.watch(['web/index.pug', 'web/*.js', '*.yaml'], {
     persistent: true,
     usePolling: true,
 });

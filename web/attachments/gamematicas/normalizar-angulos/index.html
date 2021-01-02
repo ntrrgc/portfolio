@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Normalizar ángulos | Gamemáticas: algoritmos para videojuegos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="En ocasiones tenemos un ángulo que nos determina la rotación de un objeto y necesitamos actualizarlo girando en un sentido u en otro. La forma más simple de actualizar este ángulo es sumando o restand">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Normalizar ángulos">
+<meta property="og:url" content="http://ntrrgc.me/gamematicas/normalizar-angulos/index.html">
+<meta property="og:site_name" content="Gamemáticas: algoritmos para videojuegos">
+<meta property="og:description" content="En ocasiones tenemos un ángulo que nos determina la rotación de un objeto y necesitamos actualizarlo girando en un sentido u en otro. La forma más simple de actualizar este ángulo es sumando o restand">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="http://ntrrgc.me/attachments/gamematicas/images/normalizar2.svg">
+<meta property="og:image" content="http://ntrrgc.me/attachments/gamematicas/images/normalizar2.svg">
+<meta property="og:image" content="http://ntrrgc.me/attachments/gamematicas/images/normalizar3.svg">
+<meta property="og:image" content="http://ntrrgc.me/attachments/gamematicas/images/normalizar4.svg">
+<meta property="og:image" content="http://ntrrgc.me/attachments/gamematicas/images/normalizar5.svg">
+<meta property="og:image" content="http://ntrrgc.me/attachments/gamematicas/images/normalizar6.svg">
+<meta property="article:published_time" content="2015-05-14T07:44:35.000Z">
+<meta property="article:modified_time" content="2021-01-02T13:35:27.278Z">
+<meta property="article:author" content="Alicia Boya García">
+<meta property="article:tag" content="geometría">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ntrrgc.me/attachments/gamematicas/images/normalizar2.svg">
+  
+    <link rel="alternate" href="atom.xml" title="Gamemáticas: algoritmos para videojuegos" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/attachments/gamematicas/images/favicon.png">
+  
+  <link rel="canonical" href="http://ntrrgc.me/gamematicas/normalizar-angulos/">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+
+  
+<link rel="stylesheet" href="/attachments/gamematicas/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-60156077-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" class="bgcol-pri-0">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/attachments/gamematicas/" id="logo">Gamemáticas</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/attachments/gamematicas/">Inicio</a>
+        
+          <a class="main-nav-link" href="/attachments/gamematicas/articulos">Artículos</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search"
+                 id="search-query"
+                 results="0"
+                 class="search-form-input"
+                 placeholder="Buscar"><button type="submit" class="search-form-submit">&#xF002;</button>
+          <input type="hidden" name="q" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-normalizar-angulos" class="article article-type-post" itemscope
+         itemtype="http://schema.org/BlogPosting">
+  <meta itemprop="datePublished" content="2015-05-14T07:44:35.000Z">
+  <meta itemprop="url" content="http://ntrrgc.me/gamematicas/normalizar-angulos/">
+  <meta itemprop="inLanguage" content="es">
+  <meta itemprop="author" content="Alicia Boya García">
+  <div class="article-meta">
+    <a href="/attachments/gamematicas/normalizar-angulos/" class="article-date">
+  <time datetime="2015-05-14T07:44:35.000Z" itemprop="datePublished">14/05/2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/attachments/gamematicas/categorias/Geometria/">Geometría</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Normalizar ángulos
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>En ocasiones tenemos un ángulo que nos determina la rotación de un objeto y necesitamos actualizarlo girando en un sentido u en otro. La forma más simple de actualizar este ángulo es sumando o restando otro valor que nos indique cuánto queremos girar el objeto.</p>
+<p>Esta manera de actualizar ángulos, aunque es simple, tiene un pequeño defecto: si seguimos girando en el mismo sentido continuamente el ángulo resultante tendrá un valor muy grande. </p>
+<p>Si bien, matemáticamente un ángulo muy grande equivalente a uno más pequeño de cero y 360°, hay varias razones por la que nos podría interesar limitar el valor del ángulo a este rango:</p>
+<ul>
+<li><p>Si como parte de la interfaz de nuestro juego queremos mostrar el valor de un ángulo, sería poco conveniente mostrar un ángulo no normalizado, por ejemplo 3630°, en vez del ángulo normalizado equivalente (en el ejemplo, 30°).</p>
+</li>
+<li><p>La precisión de los ordenadores a la hora de trabajar con números decimales es limitada, y al llegar a valores muy grandes descartan las cifras menos significativas. Si incrementamos el valor de un ángulo una y otra vez sin normalizarlo llegará un momento en el que el valor sea tan grande que los incrementos que se hagan tendrán una precisión reducida o incluso dejarán de tener efecto. </p>
+<p>Por ejemplo, sumar 10.000.000 + 1 en una variable <em>float</em> de 32 bits devuelve 10.000.000 porque la variable no tiene espacio suficiente para almacenar el número entero. </p>
+<p>Teniendo en cuenta que en una variable <em>float</em>, de los 32 bits disponibles, 23 bits se utilizan para guardar la parte fraccionaria (<a target="_blank" rel="noopener" href="http://es.wikipedia.org/wiki/IEEE_coma_flotante">referencia</a>) y que para representar un ángulo con precisión capaz de distinguir 512 valores necesitamos 9 bits, empezaríamos a tener problemas tras girar nuestro objeto $2^{(23-9)}=2^{14}= 16.384$ vueltas, suponiendo que ha partido de un valor de cero. Si consideramos que esto puede suceder, nos interesará normalizar los ángulos para evitarlo.</p>
+</li>
+</ul>
+<h1 id="Algoritmo-de-normalizacion"><a href="#Algoritmo-de-normalizacion" class="headerlink" title="Algoritmo de normalización"></a>Algoritmo de normalización</h1><p>En primer lugar estudiaremos el algoritmo de normalización en genérico, de manera que nos pueda servir para cualquier variable cíclica. Después la especializaremos para grados y radianes.</p>
+<h2 id="Variables-ciclicas"><a href="#Variables-ciclicas" class="headerlink" title="Variables cíclicas"></a>Variables cíclicas</h2><p>Entenderemos una variable cíclica como aquella en la que existe un rango normal de valores (definido por un mínimo y un máximo $[min,max)$) y en la un valor fuera del rango normal es funcionalmente equivalente a ese mismo valor sumado o restado la amplitud del rango ($max - min$) un número entero de veces.</p>
+<p>Un ejemplo cotidiano de variable cíclica es el reloj de 12 horas: las 11 + 4 horas son las 15, cuyo valor normalizado es $15-12=3$ (las 3).</p>
+<p>Un aspecto a destacar es que el máximo del rango de una variable cíclica, por definición, no es un valor normalizado. Por ejemplo, si nuestro rango es $[0^{\circ}, 360^{\circ})$, el valor normalizado de 360° es 0°.</p>
+<h2 id="Proceso-de-normalizacion"><a href="#Proceso-de-normalizacion" class="headerlink" title="Proceso de normalización"></a>Proceso de normalización</h2><p>Seguiremos utilizando el ejemplo del reloj de 12 horas. En la figura siguiente se ven representados sobre una línea el el rango de valores normal y un valor <code>val</code> que intentaremos normalizar. Una hora normalizada tiene cualquier valor entre 1 y 13, con el 13 no incluido (1:00 es una hora normalizada y 12:59 también).</p>
+<p><img src="/attachments/gamematicas/images/normalizar2.svg"></p>
+<p>En primer lugar desplazaremos todos los valores de manera que el rango comience en cero.</p>
+<p><img src="/attachments/gamematicas/images/normalizar2.svg"></p>
+<p>El proceso seguir después, depende de si $val - min$ es positivo o negativo.</p>
+<h3 id="Si-es-positivo"><a href="#Si-es-positivo" class="headerlink" title="Si es positivo"></a>Si es positivo</h3><p>En el caso de que $val - min$ sea positivo, estará a la derecha del cero en nuestra representación. Calculamos el resto de la división de $val - min$ entre la amplitud ($max - min$). </p>
+<p><img src="/attachments/gamematicas/images/normalizar3.svg"></p>
+<p> $a\ %\ b$ denota el resto obtenido al hacer la división de $a$ entre $b$.</p>
+<p>Con esto hemos conseguido ajustar el valor de $val$ entre 0 y 12. pero nuestro rango inicial era entre 1 y 13. Sumando el mínimo (1) obtenemos el valor deseado.</p>
+<p>$$normalizar(val, min, max)\ |\ val \geq min \\ = min + (val - min)\ %\ (max - min)$$</p>
+<h3 id="Si-es-negativo"><a href="#Si-es-negativo" class="headerlink" title="Si es negativo"></a>Si es negativo</h3><p>En el caso de que $val - min$ sea positivo, estará a la izquierda del cero en nuestra representación, como podemos ver en la siguiente figura.</p>
+<p><img src="/attachments/gamematicas/images/normalizar4.svg"></p>
+<p>Podemos alternar el signo dando la vuelta a los operandos de la resta y operar como en el caso de que fuera positivo. </p>
+<p>$$-(val - min)\<br>= -val -(-min) \<br>=min - val$$</p>
+<p><img src="/attachments/gamematicas/images/normalizar5.svg"></p>
+<p>El resultado es correcto, pero está invertido debido al cambio de signo. Podemos corregir esto restando a la amplitud $(max - min)$ el valor calculado.</p>
+<p><img src="/attachments/gamematicas/images/normalizar6.svg"></p>
+<p>Finalmente, igual que en el caso de los valores positivos, sumamos $min$ para obtener una hora entre 1 y 13.</p>
+<p>$$normalizar(val, min, max)\ |\ val \lt min \\ = min + (max - min) \\ - ((min - val) %\ (max - min))$$</p>
+<p>$min-min$ se anula y queda…</p>
+<p>$$normalizar(val, min, max)\ |\ val \lt min \\ = max - ((min - val)\ %\ (max - min))$$</p>
+<h2 id="Formula-y-codigo"><a href="#Formula-y-codigo" class="headerlink" title="Fórmula y código"></a>Fórmula y código</h2><p>Juntando los dos casos anteriores, esta es la definición matemática de nuestra función de normalización:</p>
+<p>$$normalizar(val, min, max)\ |\ val \lt min \\ = min + (max - min) \\ - ((min - val)\ %\ (max - min))$$</p>
+<p>En código:</p>
+<pre><code>function normCyclic(val, min, max) &#123;
+   if (val &gt;= min) &#123;
+     return min + (val - min) % (max - min);
+   &#125; else &#123;
+     return max - (min - val) % (max - min);
+   &#125;
+&#125;</code></pre>
+<p>Con esta función podemos normalizar cualquier varible cíclica. Para terminar el ejemplo, la siguiente función normalizaría tiempo en formato de 12 horas.</p>
+<pre><code>function norm12Hours(val) &#123;
+  return normCyclic(val, 1, 13);
+&#125;</code></pre>
+<h1 id="Normalizar-angulos-en-distintos-formatos"><a href="#Normalizar-angulos-en-distintos-formatos" class="headerlink" title="Normalizar ángulos en distintos formatos"></a>Normalizar ángulos en distintos formatos</h1><p>Teniendo nuestra función de normalización, es trivial construir funciones que normalizen variables cíclicas de distinto tipo.</p>
+<h2 id="Normalizar-radianes"><a href="#Normalizar-radianes" class="headerlink" title="Normalizar radianes"></a>Normalizar radianes</h2><p>Esta función normaliza grados medidos en radianes dentro del rango $[-\pi,\pi)$. Podemos utilizarla para actualizar variables de giro sin miedo a que se produzca pérdida de precisión.</p>
+<pre><code>function normRad(val) &#123;
+  return normCyclic(val, -Math.PI, Math.PI);
+&#125;</code></pre>
+<p>Para actualizar una variable de rotación realizando normalización utilizaríamos un código como este:</p>
+<pre><code>function update() &#123;
+  var rotSpeed = 3; // rad/s
+  // Actualiza la rotación del objeto teniendo
+  // sumándole la velocidad angular.
+  this.rotation = normRad(this.rotation + rotSpeed);
+&#125;</code></pre>
+<h2 id="Normalizar-grados"><a href="#Normalizar-grados" class="headerlink" title="Normalizar grados"></a>Normalizar grados</h2><p>De forma similar podemos normalizar grados. Podemos utilizar el rango $[0^{\circ}, 360^{\circ})$, con lo que obtendríamos sólo números positivos, o $[-180^{\circ}, 180^{\circ})$ si queremos tener ángulos tanto positivos como negativos.</p>
+<pre><code>function normDeg360(val) &#123;
+  return normCyclic(val, 0, 360);
+&#125;
+
+function normDeg180(val) &#123;
+  return normCyclic(val, -180, 180);
+&#125;</code></pre>
+<h1 id="Cuando-no-normalizar-variables-angulares"><a href="#Cuando-no-normalizar-variables-angulares" class="headerlink" title="Cuando no normalizar variables angulares"></a>Cuando no normalizar variables angulares</h1><p>Cuando definimos al principio de la definición del algoritmo las variables cíclicas especificamos una restricción:</p>
+<blockquote>
+<p>Entenderemos una variable cíclica como aquella en la que existe un rango normal de valores (definido por un mínimo y un máximo $[min,max)$) y en la <strong>un valor fuera del rango</strong> normal es <strong>funcionalmente equivalente</strong> a ese mismo valor sumado o restado la amplitud del rango ($max - min$) un número entero de veces.</p>
+</blockquote>
+<p>En una variable de rotación la condición de equivalencia es cierta. Por ejemplo, un elemento rotado 540° produce el mismo resultado que rotando 180°: el elemento aparece girado media vuelta.</p>
+<p>Sin embargo, hay otras variables en la que hay una diferencia muy importante. Es el caso de las variables de velocidad angular y aceleración angular: que un objeto gire 540°/s no produce el mismo efecto que si gira a 180°/s. En el primer caso da una vuelta completa y media en un segundo, mientras en el segundo caso, en el mismo tiempo, sólo recorre media vuelta.</p>
+<p>La normalización de ángulos es útil para evitar condiciones inesperadas en nuestro código, así como mostrar valores al usuario en un rango razonable, pero no debe usarse de forma compulsiva en toda variable angular.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ntrrgc.me/gamematicas/normalizar-angulos/" data-id="ckjfrxsbq0005ljjafrm55cl9" class="share-button">Compartir</a>
+      
+      
+      
+<div class="tag-classification">
+Clasificado en:
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/attachments/gamematicas/tags/geometria/" rel="tag">geometría</a></li></ul>
+</div>
+
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/attachments/gamematicas/colocar-objetos-siguiendo-formas-geometricas-parte-2-poligonos-y-estrellas/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Más recientes</strong>
+      <div class="article-nav-title">
+        
+          Colocar objetos siguiendo formas geométricas, parte 2: polígonos y estrellas
+        
+      </div>
+    </a>
+  
+  
+    <a href="/attachments/gamematicas/el-tiro-parabolico-en-2d/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Más antiguos</strong>
+      <div class="article-nav-title">El tiro parabólico en 2D</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+        
+          <aside id="sidebar">
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Gamemáticas<br>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/attachments/gamematicas/" class="mobile-nav-link">Inicio</a>
+  
+    <a href="/attachments/gamematicas/articulos" class="mobile-nav-link">Artículos</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'gamematicas';
+  
+  var disqus_url = 'http://ntrrgc.me/gamematicas/normalizar-angulos/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="/attachments/gamematicas/js/bluebird.min.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/base.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/circle.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/projectile.js"></script>
+
+
+<script src="/attachments/gamematicas/demos/star.js"></script>
+
+
+
+
+
+<script src="/attachments/gamematicas/js/script.js"></script>
+
+
+<script src="/attachments/gamematicas/js/share.js"></script>
+
+<script>
+  new Share(".share-button", {
+    ui: {
+      button_text: 'Compartir',
+      flyout: 'top right'
+    }
+  });
+</script>
+
+  </div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+    MathJax.InputJax.TeX.Definitions.number =
+      /^(?:[0-9]+(?:\.[0-9]{3})*(?:\{,\}[0-9]*)*|\{,\}[0-9]+)/
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+/* Does not work when the phone is rotated :(
+MathJax.Hub.Config({
+  "HTML-CSS": { linebreaks: { automatic: true, width: 'container' } },
+         SVG: { linebreaks: { automatic: true, width: 'container' } }
+});
+*/
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>

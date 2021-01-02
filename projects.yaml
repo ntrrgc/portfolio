@@ -2,7 +2,6 @@
   title: "HEPData Explore: High Energy Physics visualization tool"
   type: software
   year: 2016
-  home: http://hepdata.rufian.eu/
   source: https://github.com/HEPData/hepdata-explore
   docs: https://github.com/HEPData/hepdata-explore/blob/master/docs/user-guide.md
   technologies: [TypeScript, knockout, ElasticSearch, python]
@@ -34,7 +33,7 @@
     2: Snorky documentation.
     3: The website includes a demo application to showcase Snorky.
     4: Interface of the demonstrational helpdesk application.
-    5: One of my current projects based on Snorky, a collaborative translation editor.
+    5: An application based on Snorky, a collaborative translation editor.
   description:
      This framework provides base architecture that eases the development of WebSocket servers for real-time applications. On top of that you use or extend *services* that provide functionality as <abbr title="Remote Procedure Call">RPC</abbr>, PubSub or user chats.
 
@@ -48,20 +47,20 @@
   title: Data visualization of CERN scholarly publishing
   type: document
   year: 2016
-  docs: http://ntrrgc.rufian.eu/HEPData-Explore.pdf
+  docs: HEPDataExplore.pdf
   languages: [es]
   images:
     1: A wireframe
     2: bai
   description:
 
-    This is my master's thesis, in which I detail how [HEPData Explore](http://hepdata.rufian.eu/) (mentioned above) was created.
+    This is my master's thesis, in which I detail how HEPData Explore (mentioned above) was created.
      
 - id: snorky-thesis
   title: Integration of real time features in web applications
   type: document
   year: 2014
-  docs: http://ntrrgc.rufian.eu/SistemasWebTiempoReal.pdf
+  docs: SistemasWebTiempoReal.pdf
   languages: [es]
   images:
     1: A page of the thesis.
@@ -114,7 +113,7 @@
   type: software
   year: 2015
   home: 
-  docs: http://ntrrgc.rufian.eu/SistemaCopiasSeguridad.pdf
+  docs: SistemaCopiasSeguridad.pdf
   technologies: [node.js, CoffeeScript]
   languages: [es]
   images:
@@ -221,17 +220,19 @@
   title: Lasaña, a temporary file hosting service
   type: software
   year: 2013
-  home: https://lasana.rufian.eu/
   source: https://github.com/ntrrgc/lasana/
   technologies: [python, django, nginx, lighttpd]
   languages: [en, es]
   images:
     1: Image previews, upload progress reporting, click and dragging and pasting from clipboard is supported.
   description:
-    Originally made years ago for my own use in a few hours, it has more than paid over the effort, being a tool I use almost every day.
+    Originally made years ago for my own use in a few hours, it more than paid over the effort, being a tool I used to use in a daily basis, back when chat applications had a lack of reliable file sharing functions.
 
 
-    This little service allows you to host files and get a temporary URL that links to them. No wrappers, no dangerous ads, no need to register, no waiting periods, no file type limitations... It can even stream video and audio!
+    This little service allowed you to host files and get a temporary URL that links to them. No wrappers, no dangerous ads, no need to register, no waiting periods, no file type limitations... It could even stream video and audio.
+
+
+    It has since been discontinued since in the current ecosystem of chat applications it's no longer necessary.
 
 - id: lasana-uploader
   title: A desktop uploader for Lasaña
@@ -286,7 +287,7 @@
   title: Visualization of the effect of the D'Hondt method on party seat allocation
   type: software
   year: 2015
-  home: http://metodo-dhondt.com/
+  home: http://ntrrgc.github.io/dhondt-vis/
   source: https://github.com/ntrrgc/dhondt-vis
   technologies: [d3.js, javascript]
   languages: [es]
@@ -302,7 +303,7 @@
   title: A web site with tutorials on math related to game development
   type: software
   year: 2015
-  home: http://gamematicas.com/
+  home: gamematicas
   source: 
   technologies: [node.js, hexo]
   languages: [es]
@@ -353,7 +354,7 @@
   type: software
   year: 2015
   source: https://github.com/ntrrgc/localpedia
-  docs: http://ntrrgc.rufian.eu/IntroduccionSolr.pdf
+  docs: IntroduccionSolr.pdf
   technologies: [solr, python]
   languages: [es]
   images:
@@ -371,7 +372,7 @@
   title: An overview of the RC4 stream cipher
   type: document
   year: 2013
-  docs: http://rufian.eu/Cifrado_RC4/
+  docs: Cifrado_RC4
   languages: [es]
   description:
     In this paper explain the basics of stream ciphers and RC4, one of the most popular stream ciphers that are in mainstream. The algorithm, implementation caveats and existing attacks are described.
@@ -394,8 +395,8 @@
   type: software
   year: 2015
   download:
-    Linux: http://ntrrgc.rufian.eu/ConejitosLinux.zip
-    Windows: http://ntrrgc.rufian.eu/ConejitosWindows.zip
+    Linux: ConejitosLinux.zip
+    Windows: ConejitosWindows.zip
   technologies: [Unity3D, C#]
   languages: [es]
   images:
@@ -499,7 +500,7 @@
   title: This portfolio
   type: software
   year: 2015
-  home: http://ntrrgc.rufian.eu/portfolio/
+  home: https://ntrrgc.me/
   source: https://github.com/ntrrgc/portfolio
   technologies: ['node.js', javascript]
   languages: [en]

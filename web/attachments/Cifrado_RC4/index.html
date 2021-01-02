@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="rc4.css" />
+  <script type="text/javascript"
+    src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <script type="text/javascript">
+    MathJax.Hub.Config({
+        "tex2jax": { inlineMath: [ [ '$', '$' ] ] }
+    });
+  </script>
+  <title>El cifrado RC4</title>
+</head>
+<body>
+
+<div id="first_page">
+
+<h1>El cifrado <em>RC4</em></h1>
+
+<div id="author">
+<p>Alicia Boya García</p>
+<p>Universidad de Salamanca</p>
+</div>
+</div>
+
+<div id="preface">
+<h1>Resumen</h1>
+<p>Este texto trata sobre el cifrado RC4: qué es, por qué se usa, en qué consiste, cuáles son los ataques más significativos conocidos y cómo evitarlos.</p>
+</div>
+
+<h1>Introducción</h1>
+<p><em>RC4</em> es un esquema de cifrado de flujo (no basado en bloques) simétrico.</p>
+<p>Fue diseñado por Ron Rivest (la <em>R</em> de <em>RSA</em>) en 1987. Originalmente era secreto, pero se filtró en 1994 a través de una lista de correo.</p>
+<p>Es un esquema de cifrado extremadamente simple y puede implementarse en software de forma muy eficiente. Esto lo ha convertido en uno de los esquemas de cifrado más utilizados del mundo.</p>
+<p>Sin embargo, <em>RC4</em> hace tiempo que no es considerado un algoritmo seguro. <em>RC4</em> es conocido por ser el mismo esquema de cifrado usado por <em>WEP</em> (<em>Wired Equivalent Privacy</em>), sistema criptográfico totalmente roto hoy en día.</p>
+<p>Menos conocido es que <em>RC4</em> es usado aún en aproximadamente la mitad de transmisiones <em>TLS</em> que ocurren en el mundo actualmente, desde para consultar tu correo hasta para establecer transferencias bancarias.</p>
+<p>Hoy en día el interés por el <em>RC4</em> parte de querer conocer hasta qué punto está roto y cómo de vulnerables son los sistemas que lo utilizan.</p>
+<h1>¿Por qué se sigue usando <em>RC4</em>?</h1>
+<ul>
+<li>
+<p><strong>Es rápido incluso en hardware viejo</strong>. Cuando alguien decide soportar HTTPS, la carga que el cifrado supondrá es a menudo un factor importante para la elección de un esquema de cifrado u otro. El cifrado <em>RC4</em> es lo suficientemente rápido como para responder a estas preocupaciones. </p>
+<p>Afortunadamente, los nuevos procesadores incorporan un juego específico de instrucciones para el cifrado y descifrado con <em>AES</em>, algoritmo notablemente más seguro que <em>RC4</em>, y que además, gracias a la implementación en hardware de este algoritmo, es capaz de procesar más datos por unidad de tiempo. Esto es muy buena noticia para los sistemas nuevos, pero no cubre a sistemas más antiguos.</p>
+</li>
+<li>
+<p><strong>Es fácil de implementar</strong>. La implementación de <em>RC4</em> cabe en una servilleta. Dada su simplicidad, se puede integrar fácilmente en el software de dispositivos embebidos sin depender de complejas bibliotecas criptográficas. Es utilizado en muchos sistemas anti-copia DRM (<em>Digital Rights Management</em>) <sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>.</p>
+</li>
+<li>
+<p><strong>No está roto del todo</strong>. No se conoce un método para romper un texto arbitrario cifrado en <em>RC4</em>, pero cada vez aparecen más ataques, y últimamente se están intensificando. Dice un viejo dicho de la <em>NSA</em>: <q>Los ataques siempre van a mejor, nunca van a peor.</q></p>
+</li>
+<li>
+<p><strong>Ataques BEAST de finales de 2011</strong>, que afectan a los cifrados de bloque <sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>. Para obstaculizarlos, muchos administradores de sistemas configuraron <em>TLS</em> para utilizar un cifrado de flujo, <em>RC4</em>.</p>
+</li>
+</ul>
+<h1>¿Qué es un cifrado de flujo?</h1>
+<p>Un cifrado de flujo, tal como es el <em>RC4</em>, utiliza muestras de datos más pequeñas que un cifrado de bloque. Habitualmente el tamaño de estas muestras coincide con el tamaño mínimo de una unidad de datos que se va a transmitir. </p>
+<p>En el <em>RC4</em> se utiliza un tamaño de 1 byte (unidad mínima de información que se puede transmitir por un protocolo de red de alto nivel o guardar en un fichero), pero estos cifrados pueden utilizar cualquier tamaño, incluido 1 bit.</p>
+<p>En un cifrado de flujo, partiendo de una clave secreta compartida por emisor y receptor, ambos generan un flujo de cifrado pseudoaleatorio (<em>keystream</em>). Este flujo de cifrado se mezcla con los datos que se van a transmitir mediante una operación de combinación, habitualmente <em>XOR</em>.</p>
+<p>Si la operación que alimenta el flujo es segura (no es fácil para un atacante determinar el estado del flujo de cifrado en un momento dado ni puede conocer qué estado alcanzará en un futuro), el resultado de la operación de combinación también será seguro.</p>
+<p>La principal ventaja de los cifrados de flujo frente a los cifrados de bloque es que no necesitan esperar a que se llene un <em>buffer</em> de un número determinado de caracteres para poder cifrar y transmitir, sino que la unidad mínima de transmisión coincide con la unidad mínima que se puede cifrar.</p>
+<p>De todas maneras, este problema de los cifrados de bloque puede evitarse utilizando relleno y técnicas de combinación de bloques (ver <em>CBC</em>, <em>Cipher Block Chaining</em> <sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>), por lo que no es esta la razón que potenció la popularidad de <em>RC4</em> en <em>TLS</em>.</p>
+<h1>El <em>RC4</em> en abstracto</h1>
+<p>El algoritmo de cifrado <em>RC4</em> se descompone en tres partes:</p>
+<ul>
+<li>Inicialización del vector de estado (<em>KSA</em>, <em>key-scheduling algorithm</em>).</li>
+<li>Generación del flujo de cifrado (<em>PRGA</em>, <em>pseudo-random generation algorithm</em>)</li>
+<li>Mezcla del texto con el flujo de cifrado.</li>
+</ul>
+<h2>Inicialización del vector de estado</h2>
+<p>Para generar el flujo de cifrado, <em>RC4</em> utiliza una permutación de todos los bytes posibles &mdash; es decir, un vector <em>S</em> de 256 elementos con todos los números del 0 al 255.</p>
+<p>Este vector se utilizará como entrada en la siguiente etapa del algoritmo para generar el flujo de cifrado.</p>
+<p>Emisor y receptor comparten una clave secreta. El algoritmo <em>RC4</em> admite claves de hasta 256 bytes de longitud, aunque la máxima seguridad se consigue con tamaños significativamente menores. Típicamente se utilizan claves de entre 5 y 16 bytes (40 - 128 bits).</p>
+<p>El <em>RC4</em> contempla un protocolo para desordenar los 256 elementos del vector a partir de la clave secreta compartida por emisor y receptor. En este protocolo, se carga el vector <em>S</em> con valores ordenados del 0 al 255 y se itera por cada elemento, intercambiando cada uno por otro de los elementos del vector determinado por la combinación de uno de los números (bytes) de la clave y el valor actual del elemento.</p>
+<p>En el cálculo de la posición de intercambio para cada iteración se tiene en cuenta el resultado de la iteración anterior, haciendo el algoritmo más difícil de atacar.</p>
+<p>El resultado es un vector permutación <em>S</em> de aspecto aleatorio, pero replicable fácilmente por cualquiera que tenga la clave secreta (receptor legítimo).</p>
+<p>El siguiente pseudocódigo muestra de forma detallada este proceso.</p>
+<pre><code>for i from 0 to 255
+    S[i] := i
+endfor
+j := 0
+for i from 0 to 255
+    j := (j + S[i] + key[i mod keylength]) mod 256
+    swap values of S[i] and S[j]
+endfor
+</code></pre>
+<h2>Generación del flujo de cifrado</h2>
+<p>Partiendo del vector de estado generado en la etapa anterior y dos variables <em>i</em> y <em>j</em> se genera el flujo de cifrado.</p>
+<p>En cada iteración del algoritmo se emite un byte del flujo de cifrado y se intercambian dos elementos del vector. En todo momento el estado del sistema está determinado por el valor de las variables <em>i</em> y <em>j</em> y el vector estado.</p>
+<p>Si un atacante llegara a conocer todos estos valores en un momento determinado de la transmisión, podría descifrar todos los mensajes que se cifraran desde ese momento en adelante.</p>
+<p>El siguiente pseudocódigo detalla el proceso de generación del flujo de cifrado.</p>
+<pre><code>i := 0
+j := 0
+while GeneratingOutput:
+    i := (i + 1) mod 256
+    j := (j + S[i]) mod 256
+    swap values of S[i] and S[j]
+    K := S[(S[i] + S[j]) mod 256]
+    output K
+endwhile
+</code></pre>
+<h2>Mezcla del texto con el flujo de cifrado (<em>keystream</em>)</h2>
+<p>A cada <em>K</em> resultado del algoritmo anterior se le hace la operación <em>XOR</em> con un byte del texto plano para obtener el texto cifrado y se envía por el canal.</p>
+<h1>Ataques al <em>RC4</em></h1>
+<p>¡La parte más divertida del <em>RC4</em>!</p>
+<h2>Maleabilidad del <em>RC4</em></h2>
+<p>Debido a lo sencilla que es la operación de combinación, el <em>RC4</em> se presta muy dado a manipulaciones. Básicamente, si un atacante invierte un bit en el texto cifrado, el receptor recogerá el bit descifrado invertido también.</p>
+<p>La siguiente imagen muestra cómo un bit se cifra haciendo <em>XOR</em> con el valor de la función de flujo de cifrado en ese bit.</p>
+<p><img alt="Cifrado normal" src="cifrado-normal.png" /></p>
+<p>La siguiente imagen muestra cómo si alteramos los bits cifrados, el receptor recibe los bits invertidos.</p>
+<p><img alt="Cifrado alterado" src="cifrado-alterado.png" /></p>
+<p>Si bien es cierto que un atacante intermedio puede alterar los bits como le plazca, esto no le ayuda a obtener el texto plano desde el cifrado. ¿Por qué debe preocuparnos entonces este efecto?</p>
+<p>Mientras el atacante no conozca el texto plano, cualquier alteración del mensaje que haga producirá basura. Esto sería aceptable si no fuera porque <strong>en las aplicaciones de la vida real, tales como HTTPS, el atacante conoce gran parte del texto plano</strong>.</p>
+<p>Una página web segura no es secreta completamente. Información como contraseñas, mensajes de los usuarios, números de cuenta, etc. es secreta; sin embargo, toda la estructura de la página que no es secreta se envía también por el mismo canal cifrado.</p>
+<p>Estos datos constituyen largos segmentos de información que el atacante puede obtener muy fácilmente (ej. cargando la página a atacar en su navegador) y que luego puede esperar encontrar en el texto plano de una comunicación cifrada.</p>
+<p>Si el atacante conoce segmentos del texto plano y además puede alterar todos los bits en esos segmentos sin ser detectado, el atacante podrá sustituir esos segmentos por lo que quiera. Sería trivial que cambiara por ejemplo el campo destino de un formulario para que los datos se enviaran a su propio servidor en vez de al servidor legítimo.</p>
+<p><strong>Conclusión 1:</strong> Los datos cifrados mediante <em>RC4</em> deben firmarse, por ejemplo con un función hash, de manera que un atacante no pueda modificar el mensaje a su antojo.</p>
+<p>Pero queda un aspecto importante. La solución más fácil parece ser incluir el hash (<em>SHA-1</em>, por ejemplo) del mensaje al final, y cifrarlo todo. Sin embargo, <strong>esto no es suficiente</strong>.</p>
+<p>Si un atacante conociera todo el texto plano del mensaje, todavía podría alterarlo a su antojo, sólo teniendo cuidado de sustituir la firma vieja por una nueva.</p>
+<p><em>¿Pero que problema hay? Si el atacante tiene el texto plano entero es que no necesita atacar nada, ¿no?</em></p>
+<p>Hay un caso de uso muy frecuente en el que es extremadamente indeseable que un atacante altere un mensaje que conoce íntegramente: las páginas de login.</p>
+<p>Una página de login es &mdash; por lo general &mdash; igual para todos los usuarios del sitio. El texto plano que se envía puede ser el mismo; sin embargo, sería muy indeseable que alguien pudiera modificar esta página por las misma razón que en el caso anterior.</p>
+<p><strong>Conclusión 2:</strong> Para muchas aplicaciones, los datos cifrados mediante <em>RC4</em> deben firmarse de tal forma que no puedan ser manipulados ni siquiera por un atacante que ya conozca el mensaje completo.</p>
+<p>Una forma de modificar el esquema anterior para lograr esto es mediante un <em>nonce</em>: En el texto plano se incorpora un número pseudoaleatorio (<em>nonce</em>) que se hará pasar por la función hash.</p>
+<p>Puesto que el <em>nonce</em> &mdash; suponiendo que es un número pseudoaleatorio de calidad criptográfica &mdash; no es conocido por el atacante, éste no podrá incluirlo en la función hash y por tanto será incapaz de manipular el mensaje sin que salten las alarmas.</p>
+<h2>¡Las claves del <em>RC4</em> no son reutilizables!</h2>
+<p><strong>Nota:</strong> Esto no es algo específico de <em>RC4</em>, sino que se aplica a todos los cifrados de flujo.</p>
+<p>Las claves secretas usadas en <em>RC4</em> no deben ser reutilizadas nunca. Reutilizarlas liberaría información sobre el texto plano <sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>.</p>
+<p>Esto es así por la forma en la que funcionan los cifrados de flujo. Recordemos la tercera etapa del algoritmo <em>RC4</em>:</p>
+<p>$$C = K \oplus M$$</p>
+<p>$C$ es el mensaje cifrado, $K$ es el flujo de cifrado y $M$ es el texto plano.</p>
+<p>Si reutilizamos la clave, $K$ será la misma secuencia de bits.</p>
+<p>Supongamos que tenemos dos mensajes cifrados con la misma $K$, $C1$ y $C2$.</p>
+<p>$$C1 = K \oplus M1$$
+$$C2 = K \oplus M2$$</p>
+<p>Si hacemos <em>XOR</em> de las dos expresiones...</p>
+<p>$$C1 \oplus C2 = (K \oplus M1) \oplus (K \oplus M2)$$</p>
+<p>Puesto que <em>XOR</em> es una operación asociativa, podemos distribuir la expresión anterior de esta forma:</p>
+<p>$$ C1 \oplus C2 = M1 \oplus M2 \oplus K \oplus K $$</p>
+<p>El resultado de hacer <em>XOR</em> de un número consigo mismo es todo ceros. El resultado de hacer <em>XOR</em> de un número con todo ceros es el mismo número. Aplicando esto podemos anular $K \oplus K$.</p>
+<p>$$ C1 \oplus C2 = M1 \oplus M2 $$</p>
+<p>Tenemos ahora que el <em>XOR</em> de los dos mensajes cifrados nos da el <em>XOR</em> de los mensajes en texto plano. En consecuencia, no sabemos el contenido de los mensajes, pero sí sabemos qué bits tienen en común y cuáles no, y eso es bastante información.</p>
+<p>A partir de aquí un atacante podría aplicar métodos estadísticos para descifrar un mensaje. Si además uno de los mensajes tenía segmentos de texto no secreto conocido por el atacante (cosa frecuente, como comentábamos en el punto anterior), el atacante puede determinar automáticamente el texto plano en el otro mensaje durante todo ese segmento.</p>
+<p>La solución a este problema pasa por no repetir claves completas. Emisor y receptor pueden pactar una parte común de la clave para todas las transmisiones, y en cada transmisión incluir un vector de inicialización (<em>IV</em>) no cifrado con un número pseudoaleatorio que se añadirá para generar la clave secreta completa.</p>
+<p>Para más seguridad, se recomienda utilizar una función hash: La parte común de la clave se concatena con el <em>IV</em>, se pasa todo por la función hash y se usa el resultado como clave secreta final para esa transmisión.</p>
+<h2>Ataque de Fluhrer, Mantin y Shamir</h2>
+<p>En 2001, Fluhrer, Mantin y Shamir demostraron que los primeros bytes del flujo de cifrado de <em>RC4</em> son menos aleatorios de lo que deberían, revelando información acerca de la clave <sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>.</p>
+<p>Si la parte común de la clave se concatena con el <em>IV</em> sin pasar por una función hash, el análisis de muchos mensajes podría revelar la clave común. </p>
+<p>Esto es lo que posibilitó la ruptura del <em>WEP</em> por primera vez. Para que el ataque funcionara era necesario conocer el primer byte del texto plano, lo cual no supuso ningún problema puesto que en el caso de <em>WEP</em> es una cabecera fija del protocolo.</p>
+<p>Para defenderse de este ataque, algunos sistemas posteriores implementaron <em>RC4-drop[n]</em>, siendo <em>n</em> un número de bytes que se descartarían al principio del flujo de cifrado. Este <em>n</em> suele oscilar entre 768 y 3072 bytes.</p>
+<h2>Ataque de Klein</h2>
+<p>El ataque de Fluhrer, Mantin y Shamir funcionaba, pero todavía era poco práctico.</p>
+<p>En 2005 Andreas Klein demostró más correlaciones existentes entre el flujo de cifrado y la clave del <em>RC4</em> <sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>.</p>
+<p>Este trabajo fue materializado en <em>aircrack-ptw</em> (más tarde incorporado en <em>aircrack-ng</em>), que permitía romper un cifrado <em>WEP</em> de 104-bits (máximo tamaño de clave permitido por el protocolo: 104 bits de clave común + 24 bits de <em>IV</em> = <em>RC4</em> de 128 bit) con apenas 40.000 paquetes con una probabilidad del 50% o con 85.000 paquetes con una probabilidad del 95%. Este tráfico es equivalente a minutos o pocas horas de uso de la red, dependiendo de la víctima.</p>
+<p>Esto, unido a los posteriores ataques de inyección de paquetes <sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup> y la difusión de estas herramientas compiladas en una forma fácil de usar acabó por destruir toda la anteriormente supuesta seguridad de <em>WEP</em>.</p>
+<h2>Ataque de AlFardan, Bernstein, Paterson, Poettering y Schuldt</h2>
+<p>Es el último ataque al <em>RC4</em> conocido (2013), y que sí afecta a <em>TLS</em>. <sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup></p>
+<p>Este ataque propone que el flujo criptográfico de <em>RC4</em> no es todo lo aleatorio que debería, sino que algunos valores son ligeramente más frecuentes que otros.</p>
+<p>Explotando esto, si un mismo texto plano es cifrado una cantidad significativa de veces con distintas claves, un atacante podría determinar dicho texto plano con una probabilidad suficientemente alta.</p>
+<p>En el escenario propuesto, un atacante alteraría una página web no cifrada para insertar un código tal que el navegador del usuario envíe un número significativo de peticiones <em>TLS</em> similares al servidor a atacar. El atacante recogería los datos de estas conexiones y los analizaría utilizando unas tablas de desviación para descifrar porciones del texto plano como aquellas con la cookie de sesión del usuario.</p>
+<p>Para explotar estas desviaciones se precisan alrededor de 2^30 comunicaciones. Son muchas comunicaciones; sin emabargo, dada la proliferación de ataques, no es extraño pensar que este número se reduzca significativamente en un futuro no muy lejano.</p>
+<p>Este nuevo ataque está a un paso de lo práctico, lo que ha causado una incipiente preocupación por abandonar <em>RC4</em> en <em>TLS</em>.</p>
+<h1>Conclusiones</h1>
+<p><em>RC4</em> es un algoritmo interesante, pero es momento de empezar a abandonarlo, antes de que sea demasiado tarde.</p>
+<p>Si bien no es posible romper sistemáticamente un sistema criptográfico arbitrario basado en <em>RC4</em>, hay muchos puntos donde se puede fallar y probablemente no sean conocidos todos.</p>
+<p>Ninguno de los autores de <em>WEP</em> llegó a pensar que el flujo criptográfico del <em>RC4</em> podría tener correlaciones reversibles con la clave. El descubrimiento de tal debilidad desató toda una serie de ataques sucesivos e investigaciones hasta que los ataques se han vuelto tan prácticos que son la razón por la que mucha gente tiene Internet en casa.</p>
+<p>Nada nos asegura que en <em>TLS</em> no vaya a ocurrir lo mismo en un futuro cercano, por lo que es mejor curarse en salud e implementar desde este momento algoritmos en los que no se conozcan tantos fallos, especialmente teniendo en cuenta que el despliegue de actualizaciones de seguridad en los sistemas informáticos a menudo va con años de retraso.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="http://en.wikipedia.org/wiki/Windows_Media_DRM">http://en.wikipedia.org/wiki/Windows_Media_DRM</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="http://www.educatedguesswork.org/2011/09/security_impact_of_the_rizzodu.html">http://www.educatedguesswork.org/2011/09/security_impact_of_the_rizzodu.html</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="http://en.wikipedia.org/wiki/Cipher_block_chaining#Cipher-block_chaining_.28CBC.29">http://en.wikipedia.org/wiki/Cipher_block_chaining#Cipher-block_chaining_.28CBC.29</a>&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="http://stackoverflow.com/a/13750730/1777162">http://stackoverflow.com/a/13750730/1777162</a>&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="http://www.crypto.com/papers/others/rc4_ksaproc.pdf">http://www.crypto.com/papers/others/rc4_ksaproc.pdf</a>&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p><a href="http://cage.ugent.be/~klein/RC4/RC4-en.ps">http://cage.ugent.be/~klein/RC4/RC4-en.ps</a>&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p><a href="http://www.eletrica.ufpr.br/mehl/te155/WEP-Packet_Injection.pdf">http://www.eletrica.ufpr.br/mehl/te155/WEP-Packet_Injection.pdf</a>&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p><a href="http://nakedsecurity.sophos.com/2013/03/16/has-https-finally-been-cracked/">http://nakedsecurity.sophos.com/2013/03/16/has-https-finally-been-cracked/</a>&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+</body>
+</html>
